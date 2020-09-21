@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-1">
+
+        </div>
+        <div class="col-sm-10">
+            <table class="table">
+                <div class="TieuDeThanhToan">
+                    <p>Thông tin thanh toán:</p>
+                </div>
+                <tr>
+                    <td class="ThanhToan">
+                        <label><b>Họ và tên:</b></label>
+                    </td>
+                    <td class="ThanhToan">
+                        <input type="text" placeholder="họ và tên" class="inputThanhToan" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ThanhToan">
+                        <label><b>Số điện thoại:</b></label>
+                    </td>
+                    <td class="ThanhToan">
+                        <input type="text" placeholder="số điện thoại" class="inputThanhToan" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ThanhToan">
+                        <label><b>Địa chỉ:</b></label>
+                    </td>
+                    <td class="ThanhToan">
+                        <input type="text" placeholder="địa chỉ" class="inputThanhToan" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ThanhToan">
+                        <label><b>Nam/Nữ:</b></label>
+                    </td>
+                    <td class="ThanhToan">
+                        <span>Nam</span><input type="radio" name="customer_gender" value="nam" class="optionSex">
+                        <span>Nữ</span><input type="radio" name="customer_gender" value="nu" class="optionSex">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ThanhToan">
+                        <label><b>Số tiền:</b></label>
+                    </td>
+                    <td class="ThanhToan">
+                        <p><b>236000 đồng</b></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ThanhToan"></td>
+                    <td class="ThanhToan">
+                        <div class="btn-sec">
+                            <a href="#" class="btn orange-btn datHang" onclick="myFunction()">Đặt hàng</a>
+                            <div id="snackbar">Bạn đã đặt hàng thành công</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+    </div>
+</div>
+<script>
+      function myFunction() {
+          var x = document.getElementById("snackbar");
+          x.className = "show";
+          setTimeout(function () {
+              x.className = x.className.replace("show", "");
+          }, 3000);
+      }
+</script>
+
+
+
