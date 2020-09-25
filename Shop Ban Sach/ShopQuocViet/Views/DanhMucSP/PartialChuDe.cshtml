@@ -1,0 +1,13 @@
+﻿
+@{
+    Layout = null;
+}
+@using ShopQuocViet.Models;
+@model List<ChuDe>
+
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="/ChiTietSP/index">@item.TenCD</a>
+        </li>
+    }

@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using ShopQuocViet.Models;
+@model List<DanhMuc>
 
 <div class="content">
     <div class="container">
@@ -17,53 +19,15 @@
                 </div>
                 <nav class="mainNav">
                     <ul>
-                        <li class="selected">
-                            <a href="#">Sách Tiếng Việt</a>
-                            <ul>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Sách Bà mẹ - Em bé</a>
-                                </li>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Sách Chính trị - Pháp lý</a>
-                                </li>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Sách Công nghệ thông tin</a>
-                                </li>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Sách Giáo khoa - Giáo trình</a>
-                                </li>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Sách Học ngoại ngữ</a>
-                                </li>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Sách Khoa học - Kĩ thuật</a>
-                                </li>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Sách Lịch sử</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">English Books</a>
-                            <ul>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Art Photography</a>
-                                </li>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Biographies</a>
-                                </li>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Dictionary</a>
-                                </li>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">History</a>
-                                </li>
-                                <li>
-                                    <a href="DanhSachSanPhamTheoDanhMuc.html">Fiction_Literature</a>
-                                </li>
-                                <li><a href="DanhSachSanPhamTheoDanhMuc.html">Children's Book</a>
-                            </ul>
-                        </li>
+                        @foreach (var item in Model)
+                        {
+                            <li class="selected">
+                                <a href="#">@item.TenDM</a>
+                                <ul>
+                                    @Html.Action("PartialChuDe",new { id = @item.MaDM })
+                                </ul>
+                            </li>
+                        }
                     </ul>
                 </nav>
             </div>

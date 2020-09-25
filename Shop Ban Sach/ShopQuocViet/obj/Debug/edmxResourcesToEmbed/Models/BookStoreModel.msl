@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BookShopModelStoreContainer" CdmEntityContainer="BookShopEntities1">
+    <EntitySetMapping Name="ANH">
+      <EntityTypeMapping TypeName="BookShopModel.ANH">
+        <MappingFragment StoreEntitySet="ANH">
+          <ScalarProperty Name="MaAnh" ColumnName="MaAnh" />
+          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BinhLuan">
+      <EntityTypeMapping TypeName="BookShopModel.BinhLuan">
+        <MappingFragment StoreEntitySet="BinhLuan">
+          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+          <ScalarProperty Name="MaND" ColumnName="MaND" />
+          <ScalarProperty Name="BinhLuan1" ColumnName="BinhLuan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CTGioHang">
+      <EntityTypeMapping TypeName="BookShopModel.CTGioHang">
+        <MappingFragment StoreEntitySet="CTGioHang">
+          <ScalarProperty Name="MaGH" ColumnName="MaGH" />
+          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="TienCT" ColumnName="TienCT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChuDe">
+      <EntityTypeMapping TypeName="BookShopModel.ChuDe">
+        <MappingFragment StoreEntitySet="ChuDe">
+          <ScalarProperty Name="MaCD" ColumnName="MaCD" />
+          <ScalarProperty Name="MaDM" ColumnName="MaDM" />
+          <ScalarProperty Name="TenCD" ColumnName="TenCD" />
+          <ScalarProperty Name="SoLuongSach" ColumnName="SoLuongSach" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DanhMuc">
+      <EntityTypeMapping TypeName="BookShopModel.DanhMuc">
+        <MappingFragment StoreEntitySet="DanhMuc">
+          <ScalarProperty Name="MaDM" ColumnName="MaDM" />
+          <ScalarProperty Name="TenDM" ColumnName="TenDM" />
+          <ScalarProperty Name="SoLuongCD" ColumnName="SoLuongCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonHang">
+      <EntityTypeMapping TypeName="BookShopModel.DonHang">
+        <MappingFragment StoreEntitySet="DonHang">
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+          <ScalarProperty Name="MaGH" ColumnName="MaGH" />
+          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+          <ScalarProperty Name="NgayBan" ColumnName="NgayBan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GioHang">
+      <EntityTypeMapping TypeName="BookShopModel.GioHang">
+        <MappingFragment StoreEntitySet="GioHang">
+          <ScalarProperty Name="MaGH" ColumnName="MaGH" />
+          <ScalarProperty Name="MaND" ColumnName="MaND" />
+          <ScalarProperty Name="TienGH" ColumnName="TienGH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NguoiDung">
+      <EntityTypeMapping TypeName="BookShopModel.NguoiDung">
+        <MappingFragment StoreEntitySet="NguoiDung">
+          <ScalarProperty Name="TenDN" ColumnName="TenDN" />
+          <ScalarProperty Name="TenND" ColumnName="TenND" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sach">
+      <EntityTypeMapping TypeName="BookShopModel.Sach">
+        <MappingFragment StoreEntitySet="Sach">
+          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+          <ScalarProperty Name="MaCD" ColumnName="MaCD" />
+          <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+          <ScalarProperty Name="TacGia" ColumnName="TacGia" />
+          <ScalarProperty Name="NXB" ColumnName="NXB" />
+          <ScalarProperty Name="GiaBia" ColumnName="GiaBia" />
+          <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+          <ScalarProperty Name="DanhGia" ColumnName="DanhGia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
