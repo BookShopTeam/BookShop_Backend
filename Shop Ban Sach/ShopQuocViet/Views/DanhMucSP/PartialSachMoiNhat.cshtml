@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+@using ShopQuocViet.Models;
+@model List<Sach>
+    @foreach (var item in Model)
+    {
+        string x = "";
+        if (@item.TenSach.Length > 16)
+        {
+            x = @item.TenSach.Substring(0, 16);
+        }
+        else
+        {
+            x = @item.TenSach;
+        }
+        <div class="col-lg-2 col-md-5 col-sm-10">
+            <div class="item">
+                <img src="~/Content/images/anh1_2.jpg" alt="img">
+                <h3><a href="/ChiTietSP/index/@item.MaSach">@x ...</a></h3>
+                <h6><span class="price">@item.GiaBan</span> / <a href="/ChiTietSP/index/@item.MaSach">Mua</a></h6>
+            </div>
+        </div>
+    }

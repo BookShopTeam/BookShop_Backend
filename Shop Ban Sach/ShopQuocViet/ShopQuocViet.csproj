@@ -174,48 +174,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ANH.cs">
-      <DependentUpon>BookStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BinhLuan.cs">
-      <DependentUpon>BookStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BookStoreModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BookStoreModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BookStoreModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BookStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BookStoreModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BookStoreModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ChuDe.cs">
-      <DependentUpon>BookStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CTGioHang.cs">
-      <DependentUpon>BookStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DanhMuc.cs">
-      <DependentUpon>BookStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DonHang.cs">
-      <DependentUpon>BookStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GioHang.cs">
-      <DependentUpon>BookStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NguoiDung.cs">
-      <DependentUpon>BookStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Sach.cs">
-      <DependentUpon>BookStoreModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ANH.cs" />
+    <Compile Include="Models\BinhLuan.cs" />
+    <Compile Include="Models\BookShopModel.cs" />
+    <Compile Include="Models\ChuDe.cs" />
+    <Compile Include="Models\CTGioHang.cs" />
+    <Compile Include="Models\DanhMuc.cs" />
+    <Compile Include="Models\DonHang.cs" />
+    <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\LoaiTaiKhoan.cs" />
+    <Compile Include="Models\NguoiDung.cs" />
+    <Compile Include="Models\Sach.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -278,16 +247,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\BookStoreModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BookStoreModel.edmx</DependentUpon>
-      <LastGenOutput>BookStoreModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BookStoreModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BookStoreModel.edmx</DependentUpon>
-      <LastGenOutput>BookStoreModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -298,13 +257,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
-    <EntityDeploy Include="Models\BookStoreModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BookStoreModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BookStoreModel.edmx.diagram">
-      <DependentUpon>BookStoreModel.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -347,6 +299,8 @@
     <Content Include="Views\Home\PartialCauNoiVeSach.cshtml" />
     <Content Include="Views\Home\PartialSlideGioiThieu.cshtml" />
     <Content Include="Views\DanhMucSP\PartialChuDe.cshtml" />
+    <Content Include="Views\DanhMucSP\PartialSachHot.cshtml" />
+    <Content Include="Views\DanhMucSP\PartialSachMoiNhat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

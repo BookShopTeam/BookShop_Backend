@@ -9,16 +9,18 @@ namespace ShopQuocViet.Controllers
 {
     public class HomeController : Controller
     {
-        BookShopEntities1 db = new BookShopEntities1();
+        BookShopModel db = new BookShopModel();
         public ActionResult Index()
         {
             return View();
         }
+        [ChildActionOnly]
         public ActionResult PartialSachNoiBat()
         {
             var listSachNoiBat = db.Sach.Take(8).ToList();
             return PartialView(listSachNoiBat);
         }
+        [ChildActionOnly]
         public ActionResult PartialQuanTam()
         {
             var listSachQuanTam = db.Sach.Take(16).ToList();

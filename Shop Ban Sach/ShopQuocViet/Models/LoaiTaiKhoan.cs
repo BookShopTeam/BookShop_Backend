@@ -6,32 +6,23 @@ namespace ShopQuocViet.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ChuDe")]
-    public partial class ChuDe
+    [Table("LoaiTaiKhoan")]
+    public partial class LoaiTaiKhoan
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ChuDe()
+        public LoaiTaiKhoan()
         {
-            Sach = new HashSet<Sach>();
+            NguoiDung = new HashSet<NguoiDung>();
         }
 
         [Key]
-        [StringLength(10)]
-        public string MaCD { get; set; }
+        [StringLength(20)]
+        public string IDLoaiTK { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string MaDM { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string TenCD { get; set; }
-
-        public int SoLuongSach { get; set; }
-
-        public virtual DanhMuc DanhMuc { get; set; }
+        [StringLength(20)]
+        public string TenLoaiTK { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sach> Sach { get; set; }
+        public virtual ICollection<NguoiDung> NguoiDung { get; set; }
     }
 }

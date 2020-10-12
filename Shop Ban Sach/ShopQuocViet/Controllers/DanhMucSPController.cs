@@ -9,21 +9,27 @@ namespace ShopQuocViet.Controllers
 {
     public class DanhMucSPController : Controller
     {
-        BookShopEntities1 db = new BookShopEntities1();
+        BookShopModel db = new BookShopModel();
         // GET: DanhMucSP
         public ActionResult Index()
         {
-            var listDanhMuc = from DM in db.DanhMuc
-                              select DM;
-            return View(listDanhMuc.ToList());
+            var listDanhMuc = db.DanhMuc.ToList();
+            return View(listDanhMuc);
         }
         public ActionResult PartialChuDe(string id)
         {
-
-            var listChuDe = from CD in db.ChuDe
-                            where CD.MaDM == id
-                            select CD;
-            return PartialView(listChuDe.ToList());
+            var listChuDe = db.ChuDe.Where(n=>n.MaDM == id).ToList();
+            return PartialView(listChuDe);
+        }
+        public ActionResult PartialSachHot()
+        {
+            var listSachHot = db.Sach.Take(10).ToList();
+            return PartialView(listSachHot);
+        }
+        public ActionResult PartialSachMoiNhat()
+        {
+            var listSachNew = db.Sach.Take(10).ToList();
+            return PartialView(listSachNew);
         }
 
     }

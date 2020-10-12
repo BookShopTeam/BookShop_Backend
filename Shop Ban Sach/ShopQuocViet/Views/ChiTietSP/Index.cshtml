@@ -3,7 +3,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using ShopQuocViet.Models;
+@model List<Sach>
 <section>
     <div class="contentChiTiet">
         <div class="container">
@@ -14,15 +15,17 @@
                 <div class="col-sm-10">
                     <div class="breadcrumb">
                         <div class="container">
-                            <a class="breadcrumb-item" href="TrangChu.html">Shop Quốc Việt</a>
-                            <a class="breadcrumb-item" href="DanhMucSanPham.html">Sách tiếng việt</a>
-                            <a class="breadcrumb-item" href="DanhSachSanPhamTheoDanhMuc.html">Sách lịch sử</a>
-                            <span class="breadcrumb-item active">Thủ tướng Phạm Văn Đồng những chặng đường lịch sử</span>
+                            @foreach (var item in Model)
+                            {
+                                <a class="breadcrumb-item" href="DanhSachSanPhamTheoDanhMuc.html">@item.MaCD</a>
+                                <span class="breadcrumb-item active">@item.TenSach</span>
+                            }
+                           
                         </div>
                     </div>
                     <section class="product-sec">
                         <div class="container khungSPDon">
-                            <h1>Thủ tướng Phạm Văn Đồng những chặng đường lịch sử</h1>
+                            <h1></h1>
                             <div class="row">
                                 <div class="col-md-7" style="text-align:justify">
                                     <div class="row singleProduct">
