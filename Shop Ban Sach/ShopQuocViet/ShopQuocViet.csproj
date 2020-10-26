@@ -189,7 +189,7 @@
     <Compile Include="Models\DanhMuc.cs" />
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\HoaDon.cs" />
-    <Compile Include="Models\ItemGioHang.cs" />
+    <Compile Include="Models\ItemCart.cs" />
     <Compile Include="Models\LoaiTaiKhoan.cs" />
     <Compile Include="Models\NguoiDung.cs" />
     <Compile Include="Models\NhomDiaChi.cs" />
@@ -391,6 +391,8 @@
     <Content Include="Views\TaiKhoan\DangKy.cshtml" />
     <Content Include="Views\Test\Register.cshtml" />
     <Content Include="Views\GioHang\PartialItem.cshtml" />
+    <Content Include="Views\GioHang\GHKhachVangLai.cshtml" />
+    <Content Include="Views\GioHang\PartialItemKH.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

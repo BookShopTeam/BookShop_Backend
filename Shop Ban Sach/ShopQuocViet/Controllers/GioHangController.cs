@@ -10,13 +10,32 @@ namespace ShopQuocViet.Controllers
     {
         // GET: GioHang
         BookModel db = new BookModel();
-       
+
+        public List<ItemCart> LayGioHang()
+        {
+            List<ItemCart> lstGioHang = Session["GioHang"] as List<ItemCart>;
+            if (lstGioHang == null)
+            {
+                //Nếu session bằng  null thì khởi tạo gio hàng
+                lstGioHang = new List<ItemCart>();
+                // Gán lại giỏ hàng cho session
+                Session["GioHang"] = lstGioHang;
+            }
+            // nếu giỏ hàng khác null ( đã có sản phẩm trong giỏ ) thì trả về  list
+            return lstGioHang;
+        }
+
         public ActionResult Index()
         {
 
             if(Session["TaiKhoan"] == null)
             {
-                return RedirectToAction("DangNhap", "TaiKhoan");
+                List<ItemCart> lstGioHang = LayGioHang();
+                if (lstGioHang.Count() == 0)
+                {
+                    return PartialView("GioTrong");
+                }
+                return PartialView("GHKhachVangLai",lstGioHang);
             }
             else
             {
@@ -42,9 +61,26 @@ namespace ShopQuocViet.Controllers
         }
         public ActionResult XoaSP(string maSach)
         {
-            if(Session["TaiKhoan"] == null)
+            var Sach = db.Sach.SingleOrDefault(m => m.MaSach == maSach);
+            if (Sach == null)
             {
-                return RedirectToAction("DangNhap", "TaiKhoan");
+                //Trả về trang đường dẫn không hợp lệ
+                Response.StatusCode = 404;
+                return null;
+            }
+            if (Session["TaiKhoan"] == null)
+            {
+                List<ItemCart> lstGioHang = LayGioHang();
+                var ItemOfCartKH =lstGioHang.SingleOrDefault(m => m.MaSach == maSach);
+                if (ItemOfCartKH != null)
+                {
+                    lstGioHang.Remove(ItemOfCartKH);
+                }
+                else
+                {
+                    return PartialView("GioTrong");
+                }
+                return PartialView("PartialItemKH",lstGioHang);
             }
             else
             {
@@ -65,19 +101,36 @@ namespace ShopQuocViet.Controllers
             }
            
         }
+  
         public ActionResult ThemSP(string maSach)
         {
-            if(Session["TaiKhoan"] == null)
+            var Sach = db.Sach.SingleOrDefault(m => m.MaSach == maSach);
+            if (Sach == null)
             {
-                return RedirectToAction("DangNhap", "TaiKhoan");
+                //Trả về trang đường dẫn không hợp lệ
+                Response.StatusCode = 404;
+                return null;
+            }
+            if (Session["TaiKhoan"] == null)
+            {
+                List<ItemCart> lstGioHang = LayGioHang();
+                var ItemOfCartKH = lstGioHang.SingleOrDefault(m => m.MaSach == maSach);
+                if(ItemOfCartKH ==  null)
+                {
+                    ItemCart gh = new ItemCart();
+                    gh.MaSach = maSach;
+                    gh.SoLuong = 1;
+                    lstGioHang.Add(gh);
+                }
+                else
+                {
+                    ItemOfCartKH.SoLuong += ItemOfCartKH.SoLuong;
+                }
+              
+                return PartialView("PartialSachNoiBat", "Home");
             }
             else
             {
-                var Sach = db.Sach.SingleOrDefault(m => m.MaSach == maSach);
-                if(Sach == null)
-                {
-                    
-                }
                 NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
                 var MaND = ND.TenDN;
                 var ItemOfCart = db.GioHang.SingleOrDefault(m => m.MaSach == maSach && m.MaND == MaND);
@@ -92,8 +145,8 @@ namespace ShopQuocViet.Controllers
                 }
                 else
                 {
-                    var item = db.GioHang.SingleOrDefault(m => (m.MaND == MaND) && (m.MaSach == maSach));
-                    item.SoLuong += item.SoLuong;
+                   
+                    ItemOfCart.SoLuong += ItemOfCart.SoLuong;
                     db.SaveChanges();
                 }
               
@@ -102,17 +155,33 @@ namespace ShopQuocViet.Controllers
         }
         public ActionResult ThemSP1(string maSach)
         {
+            var Sach = db.Sach.SingleOrDefault(m => m.MaSach == maSach);
+            if (Sach == null)
+            {
+                //Trả về trang đường dẫn không hợp lệ
+                Response.StatusCode = 404;
+                return null;
+            }
             if (Session["TaiKhoan"] == null)
             {
-                return RedirectToAction("DangNhap", "TaiKhoan");
+                List<ItemCart> lstGioHang = LayGioHang();
+                var ItemOfCartKH = lstGioHang.SingleOrDefault(m => m.MaSach == maSach);
+                if (ItemOfCartKH == null)
+                {
+                    ItemCart gh = new ItemCart();
+                    gh.MaSach = maSach;
+                    gh.SoLuong = 1;
+                    lstGioHang.Add(gh);
+                }
+                else
+                {
+                    ItemOfCartKH.SoLuong += ItemOfCartKH.SoLuong;
+                }
+
+                return PartialView("Index", "GioHang");
             }
             else
             {
-                var Sach = db.Sach.SingleOrDefault(m => m.MaSach == maSach);
-                if (Sach == null)
-                {
-
-                }
                 NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
                 var MaND = ND.TenDN;
                 var ItemOfCart = db.GioHang.SingleOrDefault(m => m.MaSach == maSach && m.MaND == MaND);
@@ -127,8 +196,8 @@ namespace ShopQuocViet.Controllers
                 }
                 else
                 {
-                    var item = db.GioHang.SingleOrDefault(m => (m.MaND == MaND) && (m.MaSach == maSach));
-                    item.SoLuong += item.SoLuong;
+
+                    ItemOfCart.SoLuong += ItemOfCart.SoLuong;
                     db.SaveChanges();
                 }
 
@@ -137,18 +206,33 @@ namespace ShopQuocViet.Controllers
         }
         public ActionResult ThemSP2(string maSach)
         {
+            var Sach = db.Sach.SingleOrDefault(m => m.MaSach == maSach);
+            if (Sach == null)
+            {
+                //Trả về trang đường dẫn không hợp lệ
+                Response.StatusCode = 404;
+                return null;
+            }
             if (Session["TaiKhoan"] == null)
             {
-                return RedirectToAction("DangNhap", "TaiKhoan");
+                List<ItemCart> lstGioHang = LayGioHang();
+                var ItemOfCartKH = lstGioHang.SingleOrDefault(m => m.MaSach == maSach);
+                if (ItemOfCartKH == null)
+                {
+                    ItemCart gh = new ItemCart();
+                    gh.MaSach = maSach;
+                    gh.SoLuong = 1;
+                    lstGioHang.Add(gh);
+                }
+                else
+                {
+                    ItemOfCartKH.SoLuong += ItemOfCartKH.SoLuong;
+                }
+
+                return PartialView("Index", "GioHang");
             }
             else
             {
-               
-                var Sach = db.Sach.SingleOrDefault(m => m.MaSach == maSach);
-                if (Sach == null)
-                {
-
-                }
                 NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
                 var MaND = ND.TenDN;
                 var ItemOfCart = db.GioHang.SingleOrDefault(m => m.MaSach == maSach && m.MaND == MaND);
@@ -163,8 +247,8 @@ namespace ShopQuocViet.Controllers
                 }
                 else
                 {
-                    var item = db.GioHang.SingleOrDefault(m => (m.MaND == MaND) && (m.MaSach == maSach));
-                    item.SoLuong += item.SoLuong;
+
+                    ItemOfCart.SoLuong += ItemOfCart.SoLuong;
                     db.SaveChanges();
                 }
 

@@ -23,6 +23,7 @@ namespace ShopQuocViet.Controllers
         [ChildActionOnly]
         public ActionResult PartialMoiNhat()
         {
+            
             var listSachQuanTam = db.TTSach.OrderByDescending(s => s.NgayPhatHanh).Take(8).ToList();
             return PartialView(listSachQuanTam);
         }

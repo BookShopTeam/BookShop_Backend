@@ -1,0 +1,99 @@
+﻿@using ShopQuocViet.Models
+@model List<ItemCart>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="col-sm-12">
+        <div class="main">
+            <div class="content">
+                <div class="section group">
+                    <h2 class="text-center">Giỏ hàng của bạn </h2>
+                    <div class="container">
+                        <table id="cart" class="table table-hover table-condensed">
+                            <thead>
+                                <tr class="text-center" style="color: orange;">
+                                    <th style="width: 5%">Chọn</th>
+                                    <th style="width: 5%"></th>
+                                    <th style="width: 45%">Sản phẩm</th>
+                                    <th style="width: 8%">Đơn giá</th>
+                                    <th style="width: 9%">Số lượng</th>
+                                    <th style="width:20%"> Thành tiền</th>
+                                    <th style="width: 8%">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="CartGioHang">
+                                @foreach (var item in Model)
+                                {
+                                    @Html.Action("ChiTietSach", "GioHang", new { maSach = @item.MaSach, soLuong = @item.SoLuong });
+                                }
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <a href="~/DanhMucSP/Index" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
+                                    </td>
+                                    <td colspan="2" class="hidden-xs"> </td>
+                                    <td class="hidden-xs text-center">
+                                        <strong>Tổng tiền</strong>
+                                    </td>
+                                    <td class="hidden-xs text-center">
+                                        <strong style="color: red;" id="TongTien">0</strong>
+                                    </td>
+                                    <td>
+                                        <a href="~/ThanhToan/Index" class="btn btn-success btn-block">Mua hàng <i class="fa fa-angle-right"></i></a>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    function xemKetQua() {
+        // Xác định 2 thẻ theo id
+        var input_text = document.getElementsByClassName("Num")
+        var result = document.getElementsByClassName("ThanhTien")
+        var Gia = document.getElementsByClassName("DonGia")
+        var TongTien = document.getElementById("TongTien")
+        var chon = document.getElementsByClassName("check")
+        var tong = 0
+        // lấy giá trị của input_text
+
+        for (var i = 0; i < input_text.length; i++) {
+            if (input_text[i].value < 1) {
+                input_text[i].value = 1
+            }
+            var text = input_text[i].value
+            var tien = Gia[i].innerHTML
+            // gán giá trị cho result
+            result[i].innerHTML = text * tien
+            subTong = text * tien
+            if (chon[i].checked == true)
+                tong += subTong
+        }
+
+        TongTien.innerHTML = tong
+    }
+
+    function CapNhatThanhToan() {
+        xemKetQua();
+    };
+    window.onload = function () {
+        CapNhatThanhToan();
+    }
+
+</script>
