@@ -1,4 +1,4 @@
-﻿
+﻿@model ShopQuocViet.Models.NguoiDung
 @{
 Layout = "~/Views/Shared/LayoutDangNhap.cshtml";
 }
@@ -9,20 +9,19 @@ Layout = "~/Views/Shared/LayoutDangNhap.cshtml";
         <!--form-stars-here-->
         <div class="form-w3-agile">
             <h2>Đăng Nhập Tài Khoản</h2>
-            <form action="#" method="post">
+            <form action="~/TaiKhoan/DangNhap" method="post">
                 <div class="form-sub-w3">
-                    <input type="text" name="Username" placeholder="Tên đăng nhập" required="" />
-                    <div class="icon-w3">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                    </div>
+                    @Html.TextBoxFor(m => m.TenDN, "", new { @class = "form-control", @placeholder = "Tên đăng nhập" })
+                    @Html.ValidationMessageFor(m => m.TenDN)
                 </div>
                 <div class="form-sub-w3">
-                    <input type="password" name="Password" placeholder="Mật khẩu" required="" />
-                    <div class="icon-w3">
-                        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-                    </div>
+                   @Html.TextBoxFor(m => m.MatKhau, "", new { @class = "form-control", @placeholder = "Mật khẩu" })
+                    @Html.ValidationMessageFor(m => m.MatKhau)
                 </div>
-
+                @if(ViewBag.loi != null)
+                {
+                    <p style="color: red">@ViewBag.loi</p>
+                }
                 <p class="p-bottom-w3ls1">Bạn chưa có tài khoản?<a href="/TaiKhoan/DangKy"> Đăng ký</a></p>
                 <div class="clear"></div>
                 <div class="submit-w3l">
@@ -46,4 +45,9 @@ Layout = "~/Views/Shared/LayoutDangNhap.cshtml";
         </div>
     </div>
 
+<style>
+   .form-sub-w3 span{
+       color: red;
+    }
+</style>
 

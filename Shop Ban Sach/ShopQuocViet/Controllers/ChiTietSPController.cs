@@ -9,12 +9,37 @@ namespace ShopQuocViet.Controllers
 {
     public class ChiTietSPController : Controller
     {
-        BookShopModel db = new BookShopModel();
+        BookModel db = new BookModel();
         // GET: ChiTietSP
-        public ActionResult Index(string maSach)
+        public ActionResult Index(string id)
         {
-            var CTSach = db.Sach.Where(n => n.MaSach == maSach).ToList();
-            return View(CTSach);
+            var CTSach = db.TTSach.Where(n => n.MaSach == id).ToList();
+            if(CTSach.Count != 0)
+            {
+                ViewBag.MaCD = CTSach[0].MaCD;
+                return View(CTSach);
+            }
+            else
+            {
+                return RedirectToAction("ThongBao");
+            }
+           
         }
+        public ActionResult AnhKem()
+        {
+            var CTSach = db.ANH.SqlQuery("SELECT *from Anh WHERE MaSach is null").ToList();
+            return PartialView(CTSach);
+        }
+        public ActionResult ThongBao()
+        {
+            return PartialView();
+        }
+        public ActionResult SachCungCD(string maCD)
+        {
+            maCD = ViewBag.MaCD;
+            var ListSach = db.TTSach.Where(s=> s.MaCD == maCD).ToList();
+            return PartialView("~/Views/Home/PartialSachNoiBat.cshtml", ListSach);
+        }
+
     }
 }

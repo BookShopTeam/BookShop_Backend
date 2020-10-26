@@ -6,29 +6,25 @@ namespace ShopQuocViet.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("DonHang")]
-    public partial class DonHang
+    [Table("CTHoaDon")]
+    public partial class CTHoaDon
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(10)]
-        public string MaDH { get; set; }
+        public string MaHD { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(10)]
-        public string MaGH { get; set; }
-
-        [Key]
-        [Column(Order = 2)]
-        [StringLength(10)]
         public string MaSach { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime NgayBan { get; set; }
+        public int? SoLuong { get; set; }
 
-        public virtual GioHang GioHang { get; set; }
+        public int? DonGia { get; set; }
 
         public virtual Sach Sach { get; set; }
+
+        public virtual HoaDon HoaDon { get; set; }
     }
 }

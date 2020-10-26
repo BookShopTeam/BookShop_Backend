@@ -1,0 +1,15 @@
+﻿@using ShopQuocViet.Models;
+@model List<DanhMuc>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li class="selected">
+        <a href="#">@item.TenDM</a>
+        <ul>
+            @Html.Action("PartialChuDe", new { id = @item.MaDM })
+        </ul>
+    </li>
+}

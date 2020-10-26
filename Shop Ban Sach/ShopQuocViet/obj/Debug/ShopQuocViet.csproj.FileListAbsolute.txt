@@ -141,10 +141,14 @@ C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\Microsoft.AI.Web.xml
-C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\obj\Debug\ShopQuocViet.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\obj\Debug\ShopQuocViet.dll
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\obj\Debug\ShopQuocViet.pdb
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\EntityFramework.dll
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\EntityFramework.SqlServer.dll
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\EntityFramework.xml
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\EntityFramework.SqlServer.xml
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\obj\Debug\ShopQuocViet.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\PagedList.dll
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\PagedList.Mvc.dll
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\PagedList.xml
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\ShopQuocViet\Shop Ban Sach\ShopQuocViet\bin\PagedList.Mvc.xml

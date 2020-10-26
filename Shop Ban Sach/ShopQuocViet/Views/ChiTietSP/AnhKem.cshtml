@@ -1,0 +1,8 @@
+﻿
+@using ShopQuocViet.Models
+@model List<ANH>
+    @foreach (var item in Model)
+    {
+        <img src="~/Content/images/@item.PathAnh" style="width:15%" class="anhKemSP" />
+    }
+

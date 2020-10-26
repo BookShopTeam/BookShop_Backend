@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using ShopQuocViet.Models
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,23 +9,39 @@
     <meta name="theme-color" content="ChiTietSP.html03a6f3">
     <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href=" ~/Content/css/owl.carousel.min.css">
     <link rel="stylesheet" href="~/Content/css/styles.css">
-    <link rel="stylesheet" href="~/Content/css/YourStyle.css" />
     <link href="~/Content/css/myStyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/ThangStyle.css">
+    <link href="~/Content/css/PageList.css" rel="stylesheet" />
+
+   
 </head>
 <body>
     <header>
-        <div class="header-top">
+        <div class="header-top fixed">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5"><a href="ChiTietSP.html" class="web-url">www.ShopQuocViet.com</a></div>
                     <div class="col-md-4 tenShop">
                         <h5>Nhà sách Quốc Việt</h5>
                     </div>
-                    <div class="col-md-3">
-                        <span class="ph-number">SĐT: 0906 275 011</span>
+                    <div class="col-md-3 TaiKhoan">
+                        @if (Session["TaiKhoan"] != null)
+                        {
+                            NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
+                            <span >Xin chào: <i style="color: darkblue">@ND.TenND</i></span>
+                            <span class="ph-number"><a href="~/Home/DangXuat">Đăng xuất</a></span>
+                        }
+                        else
+                        {
+                            <a href="~/TaiKhoan/DangNhap">Đăng nhập</a>
+                            <a href="~/TaiKhoan/DangKy">Đăng ký</a>
+                        }
+
+
                     </div>
                 </div>
             </div>
@@ -50,22 +67,20 @@
                             <li class="navbar-item">
                                 <a href="/GioiThieu/index" class="nav-link">Thông tin</a>
                             </li>
-                            <li class="navbar-item">
-                                <a href="/TaiKhoan/DangNhap" class="nav-link">Đăng nhập</a>
-                            </li>
                         </ul>
                         <div class="cart my-2 my-lg-0">
-                            <a href="/GioHang/index">
+                            <a href="~/GioHang/index">
                                 <span>
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 </span>
                                 <span class="quntity">3</span>
                             </a>
                         </div>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-                            <span class="fa fa-search"></span>
-                        </form>
+                            <form class="form-inline my-2 my-lg-0" method="post" action="~/Home/Search">
+                                <input class="form-control mr-sm-2" type="search" name="key" placeholder="Tìm kiếm..." aria-label="Search">
+                                <input type="submit" value="Tìm kiếm" id="butSearch"/>
+                            </form>
+                    
                     </div>
                 </nav>
             </div>
@@ -75,7 +90,7 @@
     <script>
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
-            js = d.createElement(s);
+                            js = d.createElement(s);
             js.id = id;
             js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
             fjs.parentNode.insertBefore(js, fjs);
@@ -147,6 +162,28 @@
     <script src="~/Content/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Content/js/owl.carousel.min.js"></script>
     <script src="~/Content/js/custom.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 </body>
+<style>
+    #butSearch:hover
+    {
+        background-color: orange;
+    }
 
+</style>
+<script type="text/javascript">
+     $(".anhKemSP").hover(function () {
+         var srcAnhNho = $(this).attr('src');
+         $(".anhMax").attr('src', srcAnhNho);
+    })
+   
+
+     function myFunction() {
+         var x = document.getElementById("snackbar");
+         x.className = "show";
+         setTimeout(function () {
+             x.className = x.className.replace("show", "");
+         }, 3000);
+     }
+</script>
 </html>

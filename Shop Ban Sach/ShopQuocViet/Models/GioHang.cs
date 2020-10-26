@@ -9,29 +9,20 @@ namespace ShopQuocViet.Models
     [Table("GioHang")]
     public partial class GioHang
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GioHang()
-        {
-            CTGioHang = new HashSet<CTGioHang>();
-            DonHang = new HashSet<DonHang>();
-        }
-
         [Key]
-        [StringLength(10)]
-        public string MaGH { get; set; }
-
-        [Required]
-        [StringLength(10)]
+        [Column(Order = 0)]
+        [StringLength(30)]
         public string MaND { get; set; }
 
-        public int TienGH { get; set; }
+        [Key]
+        [Column(Order = 1)]
+        [StringLength(10)]
+        public string MaSach { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CTGioHang> CTGioHang { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHang> DonHang { get; set; }
+        public int? SoLuong { get; set; }
 
         public virtual NguoiDung NguoiDung { get; set; }
+
+        public virtual Sach Sach { get; set; }
     }
 }

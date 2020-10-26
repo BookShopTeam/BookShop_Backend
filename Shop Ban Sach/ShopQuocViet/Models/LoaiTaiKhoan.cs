@@ -22,6 +22,10 @@ namespace ShopQuocViet.Models
         [StringLength(20)]
         public string TenLoaiTK { get; set; }
 
+        public int? MaQuyen { get; set; }
+
+        public virtual Quyen Quyen { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NguoiDung> NguoiDung { get; set; }
     }

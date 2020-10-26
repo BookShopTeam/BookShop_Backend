@@ -19,42 +19,34 @@
                 </div>
                 <nav class="mainNav">
                     <ul>
-                        @foreach (var item in Model)
-                        {
-                            <li class="selected">
-                                <a href="#">@item.TenDM</a>
-                                <ul>
-                                    @Html.Action("PartialChuDe",new { id = @item.MaDM })
-                                </ul>
-                            </li>
-                        }
+                        @Html.Action("DanhMuc")
                     </ul>
                 </nav>
             </div>
             <div class="col-md-9">
-                <section class="static about-sec">
+                <div class="recomended-sec">
                     <div class="container">
-                        <h2>Sách Bán Chạy Nhất Của Shop</h2>
-                        <section class="recent-book-sec">
-                                <div class="row">
-                                    @Html.Action("PartialSachHot")
-                                </div>
-                                <div class="btn-sec">
-                                    <a href="/DanhMucSP/index" class="btn orange-btn">Xem thêm</a>
-                                </div>
-                       </section>   
-                        <h2>Sách mới nhập về</h2>
-                        <section class="recent-book-sec">
+                        <div class="title">
+                            <h2>sách nổi bật</h2>
+                            <hr>
+                        </div>
+                        <div class="row">
+                            @Html.Action("PartialSachNoiBat", "Home")
+                        </div>
+                    </div>
+                    </section>
+                    <div class="recomended-sec">
+                        <div class="container">
+                            <div class="title">
+                                <h2>Sách mới nhất</h2>
+                                <hr>
+                            </div>
                             <div class="row">
-                                @Html.Action("PartialSachMoiNhat")
+                                @Html.Action("PartialSachNoiBat", "Home")
                             </div>
-                            <div class="btn-sec">
-                                <a href="/DanhMucSP/index" class="btn orange-btn">Xem thêm</a>
-                            </div>
+                        </div>
                         </section>
                     </div>
-                </section>
             </div>
         </div>
-    </div>
-</div>
+ </div>

@@ -16,14 +16,14 @@ namespace ShopQuocViet.Models
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(10)]
+        [StringLength(30)]
         public string MaND { get; set; }
 
         [Column("BinhLuan", TypeName = "text")]
         public string BinhLuan1 { get; set; }
 
-        public virtual NguoiDung NguoiDung { get; set; }
-
         public virtual Sach Sach { get; set; }
+
+        public virtual NguoiDung NguoiDung { get; set; }
     }
 }

@@ -13,7 +13,6 @@ namespace ShopQuocViet.Models
         [StringLength(20)]
         public string MaAnh { get; set; }
 
-        [Required]
         [StringLength(10)]
         public string MaSach { get; set; }
 

@@ -1,0 +1,11 @@
+﻿@using ShopQuocViet.Models
+@model List<GioHang>
+@{
+    Layout = null;
+}
+
+    @foreach (var item in Model)
+    {
+        @Html.Action("ChiTietSach", "GioHang", new { maSach = @item.MaSach, soLuong = @item.SoLuong });
+    }
+

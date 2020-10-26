@@ -1,0 +1,41 @@
+﻿@using ShopQuocViet.Models
+@model List<TTSach>
+    @foreach (var item in Model)
+    {
+        <tr id="ItemCart" class="text-center" style="color: black;">
+            <td>
+                <div>
+                    <input type="checkbox" class="check" checked onclick="CapNhatThanhToan()">
+                </div>
+            </td>
+            <td data-th="Product">
+                <div class="col-img-prod">
+                    <img src="~/Content/images/@item.PathAnh" alt="Ảnh sản phẩm" class="img-responsive" width="100">
+                </div>
+            </td>
+            <td>
+                <div style="text-align: left;">
+                    <a href="#">@item.TenSach</a>
+                    <p> Số trang: @item.SoTrang</p>
+                    <p> NXB: @item.NXB</p>
+                </div>
+            </td>
+            <td data-th="Price">
+                <div class="DonGia">@item.GiaBan</div><p>đồng</p>
+            </td>
+            <td data-th="Quantity">
+                <div>
+                    <input class="form-control text-center Num" value=@ViewBag.SoLuong type="number" style="width: 80px" onchange="xemKetQua()">
+                </div>
+            </td>
+            <td data-th="Subtotal" style="color: red;">
+                <div class="ThanhTien">@(Convert.ToInt32(@item.GiaBan)*Convert.ToInt32(@ViewBag.SoLuong))</div>
+            </td>
+            <td class="actions" data-th>
+                <button  class="btn btn-danger btn-sm" onclick="setTimeout(CapNhatThanhToan, 1000)">
+                    @Ajax.ActionLink("Xóa" ,"XoaSP", "GioHang", new { @maSach = item.MaSach }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "CartGioHang", InsertionMode = InsertionMode.Replace })
+                </button>
+            </td>
+        </tr>
+    }
+

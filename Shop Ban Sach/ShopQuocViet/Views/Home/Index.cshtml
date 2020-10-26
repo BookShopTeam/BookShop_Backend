@@ -6,8 +6,19 @@
     </section>
     <hr />
     <section class="recomended-sec">
-        @Html.Action("PartialSachNoiBat", "Home");
-    </section>
+    <div class="container">
+        <div class="title">
+            <h2>sách nổi bật</h2>
+            <hr>
+        </div>
+        <div class="row">
+                    @Html.Action("PartialSachNoiBat", "Home")
+        </div>
+                <div class="btn-sec butXemNB">
+                    <a href="/DanhMucSP/index" class="btn butDanhMucSach">Xem Thêm</a>
+                </div>
+   </div>
+</section>
     <section>
         <div class="container anhGTTrangChu">
             <div class="row">
@@ -33,9 +44,20 @@
             <br />
         </div>
     </section>
-    <section class="recent-book-sec">
-        @Html.Action("PartialQuanTam","Home")
-    </section>
+    <section class="recomended-sec">
+    <div class="container">
+        <div class="title">
+            <h2>Sách mới nhất</h2>
+            <hr>
+        </div>
+        <div class="row">
+            @Html.Action("PartialSachNoiBat", "Home")
+        </div>
+        <div class="btn-sec  butXemNB">
+            <a href="/DanhMucSP/index" class="btn butDanhMucSach">Xem Thêm</a>
+        </div>
+    </div>
+</section>
 
     <section class="testimonial-sec">
         @Html.Partial("~/Views/Home/PartialCauNoiVeSach.cshtml")

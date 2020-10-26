@@ -55,6 +55,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -170,21 +176,28 @@
     <Compile Include="Controllers\GioiThieuController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReviewSachController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ThanhToanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ANH.cs" />
     <Compile Include="Models\BinhLuan.cs" />
-    <Compile Include="Models\BookShopModel.cs" />
+    <Compile Include="Models\BookModel.cs" />
     <Compile Include="Models\ChuDe.cs" />
-    <Compile Include="Models\CTGioHang.cs" />
+    <Compile Include="Models\CTHoaDon.cs" />
     <Compile Include="Models\DanhMuc.cs" />
-    <Compile Include="Models\DonHang.cs" />
     <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\HoaDon.cs" />
+    <Compile Include="Models\ItemGioHang.cs" />
     <Compile Include="Models\LoaiTaiKhoan.cs" />
     <Compile Include="Models\NguoiDung.cs" />
+    <Compile Include="Models\NhomDiaChi.cs" />
+    <Compile Include="Models\Quyen.cs" />
     <Compile Include="Models\Sach.cs" />
+    <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Models\TTSach.cs" />
+    <Compile Include="Models\ViewTenDM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -195,8 +208,73 @@
     <Content Include="Content\css\Login.css" />
     <Content Include="Content\css\myStyle.css" />
     <Content Include="Content\css\owl.carousel.min.css" />
+    <Content Include="Content\css\PageList.css" />
     <Content Include="Content\css\styles.css" />
-    <Content Include="Content\css\YourStyle.css" />
+    <Content Include="Content\css\ThangStyle.css" />
+    <Content Include="Content\images\1.jpg" />
+    <Content Include="Content\images\10.jpg" />
+    <Content Include="Content\images\11.jpg" />
+    <Content Include="Content\images\12.jpg" />
+    <Content Include="Content\images\13.jpg" />
+    <Content Include="Content\images\14.jpg" />
+    <Content Include="Content\images\15.jpg" />
+    <Content Include="Content\images\16.jpg" />
+    <Content Include="Content\images\17.jpg" />
+    <Content Include="Content\images\18.jpg" />
+    <Content Include="Content\images\19.jpg" />
+    <Content Include="Content\images\2.jpg" />
+    <Content Include="Content\images\20.jpg" />
+    <Content Include="Content\images\21.jpg" />
+    <Content Include="Content\images\22.jpg" />
+    <Content Include="Content\images\23.jpg" />
+    <Content Include="Content\images\24.jpg" />
+    <Content Include="Content\images\25.jpg" />
+    <Content Include="Content\images\26.jpg" />
+    <Content Include="Content\images\27.jpg" />
+    <Content Include="Content\images\28.jpg" />
+    <Content Include="Content\images\29.jpg" />
+    <Content Include="Content\images\3.jpg" />
+    <Content Include="Content\images\30.jpg" />
+    <Content Include="Content\images\31.jpg" />
+    <Content Include="Content\images\32.jpg" />
+    <Content Include="Content\images\33.jpg" />
+    <Content Include="Content\images\34.jpg" />
+    <Content Include="Content\images\35.jpg" />
+    <Content Include="Content\images\36.jpg" />
+    <Content Include="Content\images\37.jpg" />
+    <Content Include="Content\images\38.jpg" />
+    <Content Include="Content\images\39.jpg" />
+    <Content Include="Content\images\4.jpg" />
+    <Content Include="Content\images\40.jpg" />
+    <Content Include="Content\images\41.jpg" />
+    <Content Include="Content\images\42.jpg" />
+    <Content Include="Content\images\43.jpg" />
+    <Content Include="Content\images\44.jpg" />
+    <Content Include="Content\images\45.jpg" />
+    <Content Include="Content\images\46.jpg" />
+    <Content Include="Content\images\47.jpg" />
+    <Content Include="Content\images\48.jpg" />
+    <Content Include="Content\images\49.jpg" />
+    <Content Include="Content\images\5.jpg" />
+    <Content Include="Content\images\50.jpg" />
+    <Content Include="Content\images\51.jpg" />
+    <Content Include="Content\images\52.jpg" />
+    <Content Include="Content\images\53.jpg" />
+    <Content Include="Content\images\54.jpg" />
+    <Content Include="Content\images\55.jpg" />
+    <Content Include="Content\images\56.jpg" />
+    <Content Include="Content\images\57.jpg" />
+    <Content Include="Content\images\58.jpg" />
+    <Content Include="Content\images\59.jpg" />
+    <Content Include="Content\images\6.jpg" />
+    <Content Include="Content\images\60.jpg" />
+    <Content Include="Content\images\7.jpg" />
+    <Content Include="Content\images\8.jpg" />
+    <Content Include="Content\images\9.jpg" />
+    <Content Include="Content\images\a1.jpg" />
+    <Content Include="Content\images\a2.jpg" />
+    <Content Include="Content\images\a3.jpg" />
+    <Content Include="Content\images\a4.jpg" />
     <Content Include="Content\images\about-img.jpg" />
     <Content Include="Content\images\about.jpg" />
     <Content Include="Content\images\amount.png" />
@@ -214,6 +292,7 @@
     <Content Include="Content\images\AnhSanPham506406240158.jpg" />
     <Content Include="Content\images\anhVoNguyenGiap.jpg" />
     <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\iconCart.png" />
     <Content Include="Content\images\img1.jpg" />
     <Content Include="Content\images\img2.jpg" />
     <Content Include="Content\images\img3.jpg" />
@@ -243,6 +322,7 @@
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\owl.carousel.min.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -251,6 +331,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
@@ -261,6 +342,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -268,7 +351,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -281,26 +366,31 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\LayoutDangNhap.cshtml" />
     <Content Include="Views\TaiKhoan\DangNhap.cshtml" />
-    <Content Include="Views\TaiKhoan\DangKy.cshtml" />
     <Content Include="Views\ChiTietReview\Index.cshtml" />
     <Content Include="Views\ChiTietSP\Index.cshtml" />
     <Content Include="Views\DanhMucSP\Index.cshtml" />
     <Content Include="Views\DanhSachSP\Index.cshtml" />
     <Content Include="Views\DoiTra\Index.cshtml" />
-    <Content Include="Views\GiaoHang\Index.cshtml" />
-    <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\DoiTra\GiaoHang\Index.cshtml" />
     <Content Include="Views\GioiThieu\Index.cshtml" />
     <Content Include="Views\ReviewSach\Index.cshtml" />
     <Content Include="Views\ThanhToan\Index.cshtml" />
     <Content Include="Views\DoiTra\Answer2DoiTra.cshtml" />
-    <Content Include="Views\GiaoHang\Answer2GiaoHang.cshtml" />
+    <Content Include="Views\DoiTra\GiaoHang\Answer2GiaoHang.cshtml" />
     <Content Include="Views\Home\PartialSachNoiBat.cshtml" />
-    <Content Include="Views\Home\PartialQuanTam.cshtml" />
     <Content Include="Views\Home\PartialCauNoiVeSach.cshtml" />
     <Content Include="Views\Home\PartialSlideGioiThieu.cshtml" />
     <Content Include="Views\DanhMucSP\PartialChuDe.cshtml" />
-    <Content Include="Views\DanhMucSP\PartialSachHot.cshtml" />
-    <Content Include="Views\DanhMucSP\PartialSachMoiNhat.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\ChiTietSP\AnhKem.cshtml" />
+    <Content Include="Views\ChiTietSP\ThongBao.cshtml" />
+    <Content Include="Views\DanhMucSP\DanhMuc.cshtml" />
+    <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\GioHang\GioTrong.cshtml" />
+    <Content Include="Views\GioHang\ChiTietSach.cshtml" />
+    <Content Include="Views\TaiKhoan\DangKy.cshtml" />
+    <Content Include="Views\Test\Register.cshtml" />
+    <Content Include="Views\GioHang\PartialItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -323,9 +413,15 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Content\css\PageList.css</ApplicationManifest>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

@@ -2,9 +2,9 @@
     padding-top: 1px;
 }
 
-footer .copy-right {
-    padding: 10px 0px;
-}
+    footer .copy-right {
+        padding: 10px 0px;
+    }
 
 .butDanhMucSach {
     background-color: rgba(255, 151, 0, 0.72);
@@ -39,13 +39,13 @@ footer .copy-right {
     font-weight: 400;
 }
 
-.product-sec .slider-content ul li span.price {
-    width: 150px;
-}
+    .product-sec .slider-content ul li span.price {
+        width: 150px;
+    }
 
-.product-sec .slider-content ul li span.final {
-    font-size: 18px;
-}
+    .product-sec .slider-content ul li span.final {
+        font-size: 18px;
+    }
 
 .buttonXemThem {
     text-align: center;
@@ -111,6 +111,7 @@ body {
         margin-bottom: 30%;
         margin-top: 30%;
     }
+
     .static h2 {
         font-size: 18px;
     }
@@ -127,12 +128,15 @@ body {
     footer .address1 h6 {
         font-size: 8px;
     }
+
     footer h4 {
         font-size: 12px;
     }
+
     footer .navigation1 li a {
         font-size: 8px;
     }
+
     footer .timing pre {
         font-size: 8px;
     }
@@ -142,12 +146,15 @@ body {
     footer .address1 h6 {
         font-size: 6px;
     }
+
     footer h4 {
         font-size: 10px;
     }
+
     footer .navigation1 li a {
         font-size: 6px;
     }
+
     footer .timing pre {
         font-size: 4px;
     }
@@ -157,12 +164,15 @@ body {
     footer .address1 h6 {
         font-size: 12px;
     }
+
     footer h4 {
         font-size: 16px;
     }
+
     footer .navigation1 li a {
         font-size: 12px;
     }
+
     footer .timing pre {
         font-size: 12px;
     }
@@ -192,75 +202,75 @@ body {
     background-color: #F60;
 }
 
-.mainNav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #999999;
-}
+    .mainNav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #999999;
+    }
 
-.mainNav ul li {
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: #999999;
-}
+        .mainNav ul li {
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #999999;
+        }
 
-.mainNav ul li a {
-    color: #FFF;
-    display: block;
-    font-size: 14px;
-    line-height: normal;
-    padding: 12px 20px;
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
-}
+            .mainNav ul li a {
+                color: #FFF;
+                display: block;
+                font-size: 14px;
+                line-height: normal;
+                padding: 12px 20px;
+                text-decoration: none;
+                font-family: Arial, Helvetica, sans-serif;
+            }
 
-.mainNav ul li a:hover {
-    font-family: Arial, Helvetica, sans-serif;
-    text-decoration: none;
-    background-color: #F00;
-    color: #FFF;
-}
+                .mainNav ul li a:hover {
+                    font-family: Arial, Helvetica, sans-serif;
+                    text-decoration: none;
+                    background-color: #F00;
+                    color: #FFF;
+                }
 
-.mainNav ul ul {
-    border-bottom: none
-}
+        .mainNav ul ul {
+            border-bottom: none
+        }
 
-.mainNav ul ul li {
-    background-color: #F5F5F5;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: #E2E2E2;
-}
+            .mainNav ul ul li {
+                background-color: #F5F5F5;
+                border-top-width: 1px;
+                border-top-style: solid;
+                border-top-color: #E2E2E2;
+            }
 
-.mainNav ul ul li a {
-    color: #000000;
-    display: block;
-    font-size: 1em;
-    line-height: normal;
-    padding: 0.5em 1em 0.5em 2.5em;
-}
+                .mainNav ul ul li a {
+                    color: #000000;
+                    display: block;
+                    font-size: 1em;
+                    line-height: normal;
+                    padding: 0.5em 1em 0.5em 2.5em;
+                }
 
-.mainNav ul ul li a:hover {
-    background-color: #E9E9E9;
-    color: #FF0000;
-}
+                    .mainNav ul ul li a:hover {
+                        background-color: #E9E9E9;
+                        color: #FF0000;
+                    }
 
-.mainNav ul ul ul {
-    border-top: 1px solid #46CFB0;
-}
+            .mainNav ul ul ul {
+                border-top: 1px solid #46CFB0;
+            }
 
-.mainNav ul ul ul li {
-    border: none;
-}
+                .mainNav ul ul ul li {
+                    border: none;
+                }
 
-.mainNav ul ul ul li a {
-    padding-left: 3.5em;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
-}
+                    .mainNav ul ul ul li a {
+                        padding-left: 3.5em;
+                        padding-top: 0.25em;
+                        padding-bottom: 0.25em;
+                    }
 
 ul li.has-subnav .accordion-btn {
     color: #fff;
@@ -300,32 +310,32 @@ footer {
     text-align: right;
 }
 
-.content-pagenation li {
-    display: inline;
-}
+    .content-pagenation li {
+        display: inline;
+    }
 
-.content-pagenation li a {
-    color: #303030;
-    font-size: 0.8em;
-    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-    background: #FFF;
-    padding: 10px 12px;
-    box-shadow: 0px 0px 5px #ADADAD;
-    -webkit-box-shadow: 0px 0px 2px #ADADAD;
-    -moz-box-shadow: 0px 0px 2px #ADADAD;
-    -o-box-shadow: 0px 0px 2px #ADADAD;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    -o-transition: all .5s;
-    -ms-transition: all .5s;
-    transition: all .5s;
-}
+        .content-pagenation li a {
+            color: #303030;
+            font-size: 0.8em;
+            font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+            background: #FFF;
+            padding: 10px 12px;
+            box-shadow: 0px 0px 5px #ADADAD;
+            -webkit-box-shadow: 0px 0px 2px #ADADAD;
+            -moz-box-shadow: 0px 0px 2px #ADADAD;
+            -o-box-shadow: 0px 0px 2px #ADADAD;
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            -o-transition: all .5s;
+            -ms-transition: all .5s;
+            transition: all .5s;
+        }
 
-.content-pagenation li a:hover,
-.content-pagenation li.active a {
-    background: #303030;
-    color: #FFF;
-}
+            .content-pagenation li a:hover,
+            .content-pagenation li.active a {
+                background: #303030;
+                color: #FFF;
+            }
 
 
 /*** review ***/
@@ -357,9 +367,9 @@ footer {
     margin: 0% 0 0% 1.6%;
 }
 
-.grid:first-child {
-    margin-left: 0;
-}
+    .grid:first-child {
+        margin-left: 0;
+    }
 
 .images_3_of_1 {
     width: 30.2%;
@@ -390,10 +400,10 @@ footer {
     text-decoration: underline;
 }
 
-.news_desc h4 span a:hover {
-    color: #B81D22;
-    text-decoration: none;
-}
+    .news_desc h4 span a:hover {
+        color: #B81D22;
+        text-decoration: none;
+    }
 
 .news_desc h4,
 .news_desc h4 a {
@@ -412,59 +422,73 @@ footer {
     font-weight: 600;
 }
 
-.news_desc p a {
-    font-size: 1em;
-    color: #B81D22;
-}
+    .news_desc p a {
+        font-size: 1em;
+        color: #B81D22;
+    }
 
 @media screen and (max-width: 320px) {
     .content-pagenation {
         font-size: 0.4em;
     }
+
     .btn {
         font-size: 4px;
     }
+
     .product-sec .slider-content ul {
         list-style: none;
         width: 80%;
         margin-bottom: 10px;
         float: center;
     }
+
     .related-books h2 {
         font-size: 12px;
     }
+
     .khungSPDon h1 {
         font-size: 10px;
     }
+
     .singleProduct {
         height: 100px;
     }
+
     .images_3_of_1 img {
         width: 80%;
         height: 60%;
     }
+
     .news_desc p {
         font-size: 0.5em;
     }
+
     .contentGioiThieu h2 {
         font-size: 1.2rem;
     }
+
     .static h2 {
         font-size: 13px;
     }
+
     .optionSex {
         margin-right: 10px;
         margin-left: 5px;
     }
+
     .ThanhToan {
         font-size: 10px;
     }
+
     .contentReview h3 {
         font-size: 1.2rem;
     }
+
     .contentReview h4 {
         font-size: 1rem;
     }
+
     .contentReview p {
         font-size: 0.6em;
     }
@@ -479,9 +503,9 @@ footer {
     color: rgba(0, 0, 0, 1);
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
-    color: rgba(255, 151, 0, 1);
-}
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: rgba(255, 151, 0, 1);
+    }
 
 .contentGioiThieu {
     height: auto;
@@ -502,6 +526,7 @@ footer {
         margin-right: 10px;
         margin-left: 5px;
     }
+
     .ThanhToan {
         font-size: 10px;
     }
@@ -513,9 +538,11 @@ footer {
         width: 50%;
         margin-bottom: 20px;
     }
+
     .butXemNB {
         margin-top: 1em;
     }
+
     .ThanhToan {
         font-size: 8px;
     }
@@ -530,9 +557,9 @@ footer {
     border-color: rgb(255, 196, 0, 0.1);
 }
 
-.inputThanhToan:hover {
-    border-color: #000000;
-}
+    .inputThanhToan:hover {
+        border-color: #000000;
+    }
 
 #snackbar {
     visibility: hidden;
@@ -550,13 +577,60 @@ footer {
     font-size: 17px;
 }
 
-#snackbar.show {
-    visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
+    #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
 @media screen and (max-width: 1200px) {
     header .main-menu .navbar-light .navbar-nav .nav-link {
         font-size: 12px;
     }
 }
+
+#butSearch {
+    color: #000;
+}
+
+
+.fixed{
+    position: fixed;
+    z-index: 4;
+    width: 100%;
+}
+@media screen and (max-width: 1024px) {
+    .fixed {
+        position: static;
+    }
+}
+.header-top .TaiKhoan a:hover {
+    text-decoration: none;
+    color: #007bff;
+}
+.header-top .TaiKhoan a{
+    text-decoration: none;
+    color: black;
+}
+
+.ParentItem:hover {
+    background-color: rgba(163,163,163,0.3);
+}
+.ParentItem .item .iconGio{
+    margin-right: 20px;
+    color: orangered;
+}
+.ParentItem .item a{
+    text-decoration: none;
+}
+.ParentItem .item a:hover{
+    color: orange;
+}
+.ParentItem .item .iconGio:hover {
+        color: orange;
+}
+.butDK{
+    margin-bottom: 20px;
+}
+
+

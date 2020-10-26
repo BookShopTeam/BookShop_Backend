@@ -22,6 +22,7 @@ namespace ShopQuocViet.Models
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoan { get; set; }
         public virtual DbSet<NguoiDung> NguoiDung { get; set; }
         public virtual DbSet<Sach> Sach { get; set; }
+        public object TTSach { get; internal set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -155,11 +156,11 @@ namespace ShopQuocViet.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Sach>()
-                .Property(e => e.DuLieu)
+                .Property(e => e.MoTa)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Sach>()
-                .Property(e => e.link)
+                .Property(e => e.LinkRe)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Sach>()

@@ -9,7 +9,7 @@ namespace ShopQuocViet.Controllers
 {
     public class DanhMucSPController : Controller
     {
-        BookShopModel db = new BookShopModel();
+        BookModel db = new BookModel();
         // GET: DanhMucSP
         public ActionResult Index()
         {
@@ -21,16 +21,15 @@ namespace ShopQuocViet.Controllers
             var listChuDe = db.ChuDe.Where(n=>n.MaDM == id).ToList();
             return PartialView(listChuDe);
         }
-        public ActionResult PartialSachHot()
+        public ActionResult PartialSachNoiBat()
         {
-            var listSachHot = db.Sach.Take(10).ToList();
-            return PartialView(listSachHot);
+            var listSachNoiBat = db.TTSach.OrderByDescending(s => s.DanhGia).Take(16).ToList();
+            return PartialView("~/Views/Home/PartialSachNoiBat.cshtml", listSachNoiBat);
         }
-        public ActionResult PartialSachMoiNhat()
+        public ActionResult DanhMuc()
         {
-            var listSachNew = db.Sach.Take(10).ToList();
-            return PartialView(listSachNew);
+            var DanhMuc = db.DanhMuc.ToList();
+            return PartialView(DanhMuc);
         }
-
     }
 }

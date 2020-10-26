@@ -6,25 +6,17 @@ namespace ShopQuocViet.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("CTGioHang")]
-    public partial class CTGioHang
+    [Table("ViewTenDM")]
+    public partial class ViewTenDM
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(10)]
-        public string MaGH { get; set; }
+        public string MaCD { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(10)]
-        public string MaSach { get; set; }
-
-        public int SoLuong { get; set; }
-
-        public int TienCT { get; set; }
-
-        public virtual GioHang GioHang { get; set; }
-
-        public virtual Sach Sach { get; set; }
+        [StringLength(50)]
+        public string TenDM { get; set; }
     }
 }
