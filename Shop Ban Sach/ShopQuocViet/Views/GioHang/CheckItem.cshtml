@@ -1,0 +1,15 @@
+﻿@using ShopQuocViet.Models;
+@model List<GioHang>
+    @foreach (var item in Model)
+    {
+        if (@item.Chon == true)
+        {
+            <input type="checkbox" class="check"  checked  onclick="CapNhatThanhToan(); uncheck('@item.MaSach');">
+        }
+        else
+        {
+            <input type="checkbox" class="check" onclick="CapNhatThanhToan(); check('@item.MaSach');">
+        }
+
+    }
+

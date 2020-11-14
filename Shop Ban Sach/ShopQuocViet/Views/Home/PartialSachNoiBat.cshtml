@@ -20,7 +20,7 @@
                                 <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
                             }
                         </p>
-                        @Ajax.ActionLink("Thêm","ThemSP","GioHang",new { @maSach = item.MaSach}, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ParentItem", InsertionMode = InsertionMode.Replace },new { @class = "fas fa-shopping-cart", onclick = "myFunction()" } )
+                        @Ajax.ActionLink("Thêm","ThemSP","GioHang",new { @maSach = item.MaSach}, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ParentItem", InsertionMode = InsertionMode.Replace },new { @class = "fas fa-shopping-cart", onclick = "myFunction(); loadGH();" } )
                         <a href="@Url.Action("index","ChiTietSP",new {id = @item.MaSach})"> Mua</a>
                     </div>
                 </div>
@@ -28,4 +28,17 @@
             }
         }
 
-      
+<script>
+    function loadGH() {
+        setTimeout(function () {
+              $.ajax({
+                 type: "GET",
+                url: '@Url.Action("SoLuongLoaiSach","GioHang")',
+                success: function (response) {
+                    $(".quntity").html(response);
+               }
+            },);
+        },2000)
+
+    }
+</script>

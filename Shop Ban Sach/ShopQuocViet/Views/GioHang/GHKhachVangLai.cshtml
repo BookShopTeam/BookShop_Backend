@@ -29,7 +29,6 @@
                                 {
                                     @Html.Action("ChiTietSach", "GioHang", new { maSach = @item.MaSach, soLuong = @item.SoLuong });
                                 }
-
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -92,7 +91,46 @@
     function CapNhatThanhToan() {
         xemKetQua();
     };
-    window.onload = function () {
+    function check(maSach) {
+        $.ajax({
+            type: "POST",
+            data: {
+                maSach: maSach
+            },
+            url: '@Url.Action("check","GioHang")',
+            success: function () {
+               }
+            });
+    }
+    function uncheck(maSach) {
+         $.ajax({
+                 type: "POST",
+                data: {
+                    maSach: maSach
+                },
+                url: '@Url.Action("unCheck","GioHang")',
+                success: function () {
+                    alert("thanh cong");
+               }
+            });
+    }
+     function update(maSach,soLuong)
+    {
+         $.ajax({
+                 type: "POST",
+                data: {
+                    maSach: maSach,
+                    soLuong: soLuong
+                },
+                url: '@Url.Action("Update","GioHang")',
+                success: function () {
+                    alert("thanh cong");
+               }
+            });
+    }
+
+    window.onload = function ()
+    {
         CapNhatThanhToan();
     }
 

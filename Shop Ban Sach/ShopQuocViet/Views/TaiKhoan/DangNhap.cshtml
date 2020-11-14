@@ -15,7 +15,7 @@ Layout = "~/Views/Shared/LayoutDangNhap.cshtml";
                     @Html.ValidationMessageFor(m => m.TenDN)
                 </div>
                 <div class="form-sub-w3">
-                   @Html.TextBoxFor(m => m.MatKhau, "", new { @class = "form-control", @placeholder = "Mật khẩu" })
+                   @Html.TextBoxFor(m => m.MatKhau, "", new { @class = "form-control",@type ="password" ,@placeholder = "Mật khẩu" })
                     @Html.ValidationMessageFor(m => m.MatKhau)
                 </div>
                 @if(ViewBag.loi != null)

@@ -13,10 +13,13 @@ namespace ShopQuocViet.Models
         [StringLength(10)]
         public string MaDC { get; set; }
 
-        [StringLength(10)]
+        [Required]
+        [StringLength(30)]
         public string MaKH { get; set; }
 
         [StringLength(50)]
         public string DiaChi { get; set; }
+
+        public virtual NguoiDung NguoiDung { get; set; }
     }
 }

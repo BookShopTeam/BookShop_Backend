@@ -5,7 +5,16 @@
         <tr id="ItemCart" class="text-center" style="color: black;">
             <td>
                 <div>
-                    <input type="checkbox" class="check" checked onclick="CapNhatThanhToan()">
+                  
+                    @if (Session["TaiKhoan"] == null)
+                    {
+                        @Html.Action("CheckItem", "GioHang", new { maSach = @item.MaSach });
+                    }
+                    else
+                    {
+                        @Html.Action("CheckItem", "GioHang", new { maSach = @item.MaSach });
+                    }
+
                 </div>
             </td>
             <td data-th="Product">
@@ -25,7 +34,7 @@
             </td>
             <td data-th="Quantity">
                 <div>
-                    <input class="form-control text-center Num" value=@ViewBag.SoLuong type="number" style="width: 80px" onchange="xemKetQua()">
+                    <input class="form-control text-center Num" value=@ViewBag.SoLuong type="number" style="width: 80px" onchange="xemKetQua(); update('@item.MaSach',this.value)">
                 </div>
             </td>
             <td data-th="Subtotal" style="color: red;">
@@ -33,9 +42,23 @@
             </td>
             <td class="actions" data-th>
                 <button  class="btn btn-danger btn-sm" onclick="setTimeout(CapNhatThanhToan, 1000)">
-                    @Ajax.ActionLink("Xóa" ,"XoaSP", "GioHang", new { @maSach = item.MaSach }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "CartGioHang", InsertionMode = InsertionMode.Replace })
+                    @Ajax.ActionLink("Xóa" ,"XoaSP", "GioHang", new { @maSach = item.MaSach }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "CartGioHang", InsertionMode = InsertionMode.Replace }, new { onclick = "loadGH()" } )
                 </button>
             </td>
         </tr>
     }
 
+<script>
+    function loadGH() {
+        setTimeout(function () {
+              $.ajax({
+                 type: "GET",
+                url: '@Url.Action("SoLuongLoaiSach","GioHang")',
+                success: function (response) {
+                    $(".quntity").html(response);
+               }
+            },);
+        },2000)
+
+    }
+</script>

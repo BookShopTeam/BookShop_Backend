@@ -1,0 +1,73 @@
+﻿@using ShopQuocViet.Models
+@model List<HoaDon>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="right__content">
+    <div class="right__title">Bảng điều khiển</div>
+    <p class="right__desc">Bảng điều khiển</p>
+    <div class="right__cards">
+        <a class="right__card" href="#">
+            <div class="right__cardTitle">Sản Phẩm</div>
+            <div class="right__cardNumber">@ViewBag.SLSP</div>
+            <div class="right__cardDesc">Xem Chi Tiết <img src="~/Areas/Admin/Content/assets/arrow-right.svg" alt=""></div>
+        </a>
+        <a class="right__card" href="#">
+            <div class="right__cardTitle">Thành Viên</div>
+            <div class="right__cardNumber">@ViewBag.SLTV</div>
+            <div class="right__cardDesc">Xem Chi Tiết <img src="~/Areas/Admin/Content/assets/arrow-right.svg" alt=""></div>
+        </a>
+        <a class="right__card" href="#">
+            <div class="right__cardTitle">Chủ Đề</div>
+            <div class="right__cardNumber">@ViewBag.SLCD</div>
+            <div class="right__cardDesc">Xem Chi Tiết <img src="~/Areas/Admin/Content/assets/arrow-right.svg" alt=""></div>
+        </a>
+        <a class="right__card" href="#">
+            <div class="right__cardTitle">Đơn Hàng</div>
+            <div class="right__cardNumber">@ViewBag.SLDH</div>
+            <div class="right__cardDesc">Xem Chi Tiết <img src="~/Areas/Admin/Content/assets/arrow-right.svg" alt=""></div>
+        </a>
+    </div>
+    <div class="right__table">
+        <p class="right__tableTitle">Đơn hàng mới</p>
+        <div class="right__tableWrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên khách hàng</th>
+                        <th>Số hoá đơn</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái v/c</th>
+                        <th>Thanh toán</th>
+                        <th style="text-align: center;">Email</th>
+                        <th>Địa chỉ </th>
+                        <th>Sđt</th>
+                        <th>ghi chú</th>
+                        <th >Ngày</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.TenKH</td>
+                            <td>@item.MaHD</td>
+                            <td>@Convert.ToInt32(@item.TongTien).ToString("N0")</td>
+                            <td>@item.TrangThaiVC</td>
+                            <td>@item.ThanhToan</td>
+                            <td data-label="Email" style="text-align: center;">@item.Email</td>
+                            <td>@item.DiaChi</td>
+                            <td>@item.SDT</td>
+                            <td>@item.Ghichu</td>
+                            <td>@item.Ngay.ToString().Substring(0,10)</td>
+                        </tr>
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+        <a href="" class="right__tableMore"><p>Xem tất cả các đơn đặt hàng</p> <img src="~/Areas/Admin/Content/assets/arrow-right-black.svg" alt=""></a>
+    </div>
+</div>

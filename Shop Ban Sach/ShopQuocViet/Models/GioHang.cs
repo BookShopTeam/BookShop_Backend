@@ -21,6 +21,8 @@ namespace ShopQuocViet.Models
 
         public int? SoLuong { get; set; }
 
+        public bool Chon { get; set; }
+
         public virtual NguoiDung NguoiDung { get; set; }
 
         public virtual Sach Sach { get; set; }

@@ -12,16 +12,17 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NguoiDung()
         {
-            BinhLuan = new HashSet<BinhLuan>();
+            DanhGia = new HashSet<DanhGia>();
             GioHang = new HashSet<GioHang>();
             HoaDon = new HashSet<HoaDon>();
+            NhomDiaChi = new HashSet<NhomDiaChi>();
         }
 
         [Key]
         [Display(Name = "Tên đăng nhập")]
         //[RegularExpression(@"^(([A-za-z]+[\s]{1}[A-za-z]+)|([A-Za-z]+))$",ErrorMessage ="{0} không hợp lệ")]
         [Required(ErrorMessage = "Chưa điền {0}")]
-        [StringLength(30,MinimumLength =6,ErrorMessage ="{0} phải ít nhất 6 kí tự")]
+        [StringLength(30, MinimumLength = 6, ErrorMessage = "{0} phải ít nhất 6 kí tự")]
         public string TenDN { get; set; }
 
         [Display(Name = "Tên Người dùng")]
@@ -31,7 +32,7 @@
 
         [Display(Name = "Mật khẩu")]
         [Required(ErrorMessage = "Chưa điền {0}")]
-        [StringLength(48,MinimumLength =8,ErrorMessage = "{0} phải ít nhất 8 kí tự")]
+        [StringLength(48, MinimumLength = 8, ErrorMessage = "{0} phải ít nhất 8 kí tự")]
         public string MatKhau { get; set; }
 
         [Display(Name = "Số điện thoại")]
@@ -45,12 +46,12 @@
         public string DiaChi { get; set; }
 
         [Display(Name = "Email")]
-       
+
         [Required(ErrorMessage = "Chưa điền {0}")]
         [StringLength(30)]
         public string Email { get; set; }
 
-       
+
         [StringLength(20)]
         public string MaLoaiTK { get; set; }
 
@@ -63,10 +64,10 @@
         [Display(Name = "xác nhận mật khẩu")]
         [Required(ErrorMessage = "Chưa điền {0}")]
         [StringLength(48)]
-        [Compare("MatKhau",ErrorMessage ="Xác thực mật khẩu không khớp")]
+        [Compare("MatKhau", ErrorMessage = "Xác thực mật khẩu không khớp")]
         public string ReMatKhau { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BinhLuan> BinhLuan { get; set; }
+        public virtual ICollection<DanhGia> DanhGia { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GioHang> GioHang { get; set; }
@@ -75,5 +76,8 @@
         public virtual ICollection<HoaDon> HoaDon { get; set; }
 
         public virtual LoaiTaiKhoan LoaiTaiKhoan { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NhomDiaChi> NhomDiaChi { get; set; }
     }
 }

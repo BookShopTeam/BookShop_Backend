@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using ShopQuocViet.Models;
 using PagedList;
+using System.Web.Security;
+
 namespace ShopQuocViet.Controllers
 {
     public class HomeController : Controller
     {
-        BookModel db = new BookModel();
+        BookModel1 db = new BookModel1();
         public ActionResult Index()
         {
             return View();
@@ -31,6 +33,7 @@ namespace ShopQuocViet.Controllers
         public ActionResult DangXuat()
         {
             Session.Clear();//remove session
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index");
         }
        [HttpPost]
@@ -39,7 +42,7 @@ namespace ShopQuocViet.Controllers
            
             ViewBag.keyword = key;
           
-            var listSearch = db.TTSach.SqlQuery("Select *From TTSach WHERE TenSach like '%" + key + "%' or TacGia like '%" + key + "%' or NXB like '%" + key + "%'");
+            var listSearch = db.TTSach.SqlQuery("Select *From TTSach WHERE TenSach like N'%" + key + "%' or TacGia like N'%" + key + "%' or NXB like N'%" + key + "%'");
             ViewBag.count = listSearch.ToList().Count;
           // tao bien so trang hien tai
             int PageSize = 8;
@@ -69,6 +72,7 @@ namespace ShopQuocViet.Controllers
             // Gọi về hàm get tìm kiếm
             return RedirectToAction("Search", new { @key = key });
         }
+
 
     }
 }

@@ -13,6 +13,7 @@ namespace ShopQuocViet.Models
         public LoaiTaiKhoan()
         {
             NguoiDung = new HashSet<NguoiDung>();
+            Quyen = new HashSet<Quyen>();
         }
 
         [Key]
@@ -22,11 +23,10 @@ namespace ShopQuocViet.Models
         [StringLength(20)]
         public string TenLoaiTK { get; set; }
 
-        public int? MaQuyen { get; set; }
-
-        public virtual Quyen Quyen { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NguoiDung> NguoiDung { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Quyen> Quyen { get; set; }
     }
 }

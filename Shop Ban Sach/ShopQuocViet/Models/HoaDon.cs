@@ -15,11 +15,6 @@ namespace ShopQuocViet.Models
             CTHoaDon = new HashSet<CTHoaDon>();
         }
 
-        [Key]
-        [StringLength(10)]
-        public string MaHD { get; set; }
-
-        [Required]
         [StringLength(30)]
         public string MaND { get; set; }
 
@@ -35,16 +30,24 @@ namespace ShopQuocViet.Models
         [StringLength(50)]
         public string HTTT { get; set; }
 
-        [StringLength(50)]
-        public string HTVC { get; set; }
-
         [StringLength(30)]
         public string TenKH { get; set; }
 
-        [StringLength(30)]
+        [StringLength(50)]
         public string TrangThaiVC { get; set; }
 
         public bool? ThanhToan { get; set; }
+
+        [Key]
+        public int MaHD { get; set; }
+
+        [StringLength(100)]
+        public string Ghichu { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime Ngay { get; set; }
+
+        public int? TongTien { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTHoaDon> CTHoaDon { get; set; }

@@ -12,7 +12,7 @@ namespace ShopQuocViet.Controllers
 {
     public class TaiKhoanController : Controller
     {
-        BookModel db = new BookModel();
+        BookModel1 db = new BookModel1();
         // GET: DangNhap
         public ActionResult DangNhap()
         {
@@ -27,8 +27,17 @@ namespace ShopQuocViet.Controllers
             NguoiDung ND = db.NguoiDung.SingleOrDefault(n => n.TenDN == sTenDN && n.MatKhau == sMatKhau);
             if (ND != null)
             {
+                PhanQuyen(ND.TenDN, ND.MaLoaiTK);
                 Session["TaiKhoan"] = ND;
-                return RedirectToAction("Index", "Home");
+                if(ND.MaLoaiTK == "client")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return Redirect("~/Admin/AdminHome/Index");
+                }
+               
             }
             else
             {
@@ -47,6 +56,11 @@ namespace ShopQuocViet.Controllers
         {
             tv.MatKhau = EncodePassword(tv.MatKhau);
             tv.ReMatKhau = EncodePassword(tv.ReMatKhau);
+            if (db.NguoiDung.SingleOrDefault(m => m.TenDN == tv.TenDN) != null)
+            {
+                ViewBag.Loi = "Tên đăng nhập đã tồn tại";
+                return View();
+            }
             if (ModelState.IsValid)
             {
                 tv.MaLoaiTK = "client";              
@@ -55,40 +69,104 @@ namespace ShopQuocViet.Controllers
                 Session["TaiKhoan"] = tv;
                 return RedirectToAction("Index", "Home");
             }
-                   
-            if (db.NguoiDung.SingleOrDefault(m => m.TenDN == tv.TenDN) != null)
-            {
-                ViewBag.Loi = "Tên đăng nhập đã tồn tại";
-            }
             return View();
         }
-
+        static string key { get; set; } = "A!9HHhi%XjjYY4YP2@Nob009X";
         public static string EncodePassword(string originalPassword)
         {
-           
-            Byte[] originalBytes;
-            Byte[] encodedBytes;
-            MD5 md5;
-            md5 = new MD5CryptoServiceProvider();
-            originalBytes = ASCIIEncoding.Default.GetBytes(originalPassword);
-            encodedBytes = md5.ComputeHash(originalBytes);
-            return BitConverter.ToString(encodedBytes);
+            using (var md5 = new MD5CryptoServiceProvider())
+            {
+                using (var tdes = new TripleDESCryptoServiceProvider())
+                {
+                    tdes.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+                    tdes.Mode = CipherMode.ECB;
+                    tdes.Padding = PaddingMode.PKCS7;
+
+                    using (var transform = tdes.CreateEncryptor())
+                    {
+                        byte[] textBytes = UTF8Encoding.UTF8.GetBytes(originalPassword);
+                        byte[] bytes = transform.TransformFinalBlock(textBytes, 0, textBytes.Length);
+                        return Convert.ToBase64String(bytes, 0, bytes.Length);
+                    }
+                }
+            }
+        }
+        public static string Decode(string cipher)
+        {
+            using (var md5 = new MD5CryptoServiceProvider())
+            {
+                using (var tdes = new TripleDESCryptoServiceProvider())
+                {
+                    tdes.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+                    tdes.Mode = CipherMode.ECB;
+                    tdes.Padding = PaddingMode.PKCS7;
+
+                    using (var transform = tdes.CreateDecryptor())
+                    {
+                        byte[] cipherBytes = Convert.FromBase64String(cipher);
+                        byte[] bytes = transform.TransformFinalBlock(cipherBytes, 0, cipherBytes.Length);
+                        return UTF8Encoding.UTF8.GetString(bytes);
+                    }
+                }
+            }
         }
         // phân quyền
         public void PhanQuyen(string TaiKhoan, string Quyen)
         {
             FormsAuthentication.Initialize();
             var ticket = new FormsAuthenticationTicket(1,
-                                          TaiKhoan, //user
-                                          DateTime.Now, //Thời gian bắt đầu
-                                          DateTime.Now.AddHours(3), //Thời gian kết thúc
-                                          false, //Ghi nhớ?
-                                          Quyen, // "DangKy,QuanLyDonHang,QuanLySanPham"
+                                          TaiKhoan,
+                                          DateTime.Now, 
+                                          DateTime.Now.AddHours(3),
+                                          false, 
+                                          Quyen,
                                           FormsAuthentication.FormsCookiePath);
 
             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
             if (ticket.IsPersistent) cookie.Expires = ticket.Expiration;
             Response.Cookies.Add(cookie);
         }
+        [HttpGet]
+        [Authorize]
+        public ActionResult ThongTinCaNhan()
+        {
+            NguoiDung ND = (NguoiDung)Session["TaiKHoan"];
+            if (ND == null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+            else
+            {
+                var modelND = db.NguoiDung.Where(m => m.TenDN == ND.TenDN).ToList();
+                return View("ThongTinCaNhan", modelND);
+            }
+        }
+        [HttpPost]
+        public ActionResult CapNhat(FormCollection f)
+        {
+            NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
+            if (ND == null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+            else
+            {
+                    var ThanhVien = db.NguoiDung.SingleOrDefault(m => m.TenDN == ND.TenDN);
+                    var pass = f["pass"];
+                    var mk = EncodePassword(pass);
+                    var tenTV = f["usr"];
+                    var nS = Convert.ToDateTime(f["birth"]);
+                    var sdt = f["tel"];
+                    var email = f["email"];
+                    var diaChi = f["addr"];
+                    ThanhVien.SDT = sdt;
+                   
+                   
+                    db.SaveChanges();
+               
+            }
+            return null;
+        }
+
     }
 }

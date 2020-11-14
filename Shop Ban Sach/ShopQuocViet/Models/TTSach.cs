@@ -14,21 +14,23 @@ namespace ShopQuocViet.Models
         [StringLength(10)]
         public string MaSach { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
         [StringLength(10)]
         public string MaCD { get; set; }
 
         [Key]
-        [Column(Order = 1)]
+        [Column(Order = 2)]
         [StringLength(50)]
         public string TenCD { get; set; }
 
         [Key]
-        [Column(Order = 2)]
+        [Column(Order = 3)]
         [StringLength(100)]
         public string TenSach { get; set; }
 
         [Key]
-        [Column(Order = 3)]
+        [Column(Order = 4)]
         [StringLength(50)]
         public string TacGia { get; set; }
 
@@ -38,14 +40,11 @@ namespace ShopQuocViet.Models
         public int? GiaBia { get; set; }
 
         [Key]
-        [Column(Order = 4)]
+        [Column(Order = 5)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int GiaBan { get; set; }
 
         public double? DanhGia { get; set; }
-
-        [StringLength(30)]
-        public string LinkRe { get; set; }
 
         [StringLength(50)]
         public string KhoiLuong { get; set; }
@@ -67,7 +66,7 @@ namespace ShopQuocViet.Models
         public string MoTa { get; set; }
 
         [Key]
-        [Column(Order = 5)]
+        [Column(Order = 6)]
         [StringLength(20)]
         public string MaAnh { get; set; }
 

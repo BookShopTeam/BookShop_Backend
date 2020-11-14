@@ -1,0 +1,21 @@
+﻿@using ShopQuocViet.Models;
+@model List<ChiTietDHSession>
+@if (Model.Count == 0)
+{
+    <p style="color:red">Không có sản phẩm nào trong giỏ hàng được chọn</p>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <ul>
+            <li>
+                <span class="left text-success">@item.tenSach  X  @item.soLuong</span> <span class="right soTien">@Convert.ToInt32(item.giaBan * item.soLuong) VND</span>
+            </li>
+        </ul>
+    }
+}
+
+
+
+

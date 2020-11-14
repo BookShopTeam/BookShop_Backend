@@ -13,9 +13,9 @@ namespace ShopQuocViet.Models
         }
 
         public virtual DbSet<ANH> ANH { get; set; }
-        public virtual DbSet<BinhLuan> BinhLuan { get; set; }
         public virtual DbSet<CTHoaDon> CTHoaDon { get; set; }
         public virtual DbSet<ChuDe> ChuDe { get; set; }
+        public virtual DbSet<DanhGia> DanhGia { get; set; }
         public virtual DbSet<DanhMuc> DanhMuc { get; set; }
         public virtual DbSet<GioHang> GioHang { get; set; }
         public virtual DbSet<HoaDon> HoaDon { get; set; }
@@ -25,6 +25,7 @@ namespace ShopQuocViet.Models
         public virtual DbSet<Quyen> Quyen { get; set; }
         public virtual DbSet<Sach> Sach { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<ChiTietDH> ChiTietDH { get; set; }
         public virtual DbSet<TTSach> TTSach { get; set; }
         public virtual DbSet<ViewTenDM> ViewTenDM { get; set; }
 
@@ -42,22 +43,6 @@ namespace ShopQuocViet.Models
                 .Property(e => e.PathAnh)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<BinhLuan>()
-                .Property(e => e.MaSach)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<BinhLuan>()
-                .Property(e => e.MaND)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<BinhLuan>()
-                .Property(e => e.BinhLuan1)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<CTHoaDon>()
-                .Property(e => e.MaHD)
-                .IsUnicode(false);
-
             modelBuilder.Entity<CTHoaDon>()
                 .Property(e => e.MaSach)
                 .IsUnicode(false);
@@ -68,6 +53,14 @@ namespace ShopQuocViet.Models
 
             modelBuilder.Entity<ChuDe>()
                 .Property(e => e.MaDM)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DanhGia>()
+                .Property(e => e.MaSach)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DanhGia>()
+                .Property(e => e.MaND)
                 .IsUnicode(false);
 
             modelBuilder.Entity<DanhMuc>()
@@ -85,10 +78,6 @@ namespace ShopQuocViet.Models
 
             modelBuilder.Entity<GioHang>()
                 .Property(e => e.MaSach)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<HoaDon>()
-                .Property(e => e.MaHD)
                 .IsUnicode(false);
 
             modelBuilder.Entity<HoaDon>()
@@ -110,11 +99,6 @@ namespace ShopQuocViet.Models
             modelBuilder.Entity<HoaDon>()
                 .Property(e => e.TrangThaiVC)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<HoaDon>()
-                .HasMany(e => e.CTHoaDon)
-                .WithRequired(e => e.HoaDon)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<LoaiTaiKhoan>()
                 .Property(e => e.IDLoaiTK)
@@ -147,7 +131,7 @@ namespace ShopQuocViet.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<NguoiDung>()
-                .HasMany(e => e.BinhLuan)
+                .HasMany(e => e.DanhGia)
                 .WithRequired(e => e.NguoiDung)
                 .HasForeignKey(e => e.MaND)
                 .WillCascadeOnDelete(false);
@@ -162,6 +146,12 @@ namespace ShopQuocViet.Models
                 .HasMany(e => e.HoaDon)
                 .WithRequired(e => e.NguoiDung)
                 .HasForeignKey(e => e.MaND)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<NguoiDung>()
+                .HasMany(e => e.NhomDiaChi)
+                .WithRequired(e => e.NguoiDung)
+                .HasForeignKey(e => e.MaKH)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<NhomDiaChi>()
@@ -197,12 +187,12 @@ namespace ShopQuocViet.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Sach>()
-                .HasMany(e => e.BinhLuan)
+                .HasMany(e => e.CTHoaDon)
                 .WithRequired(e => e.Sach)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Sach>()
-                .HasMany(e => e.CTHoaDon)
+                .HasMany(e => e.DanhGia1)
                 .WithRequired(e => e.Sach)
                 .WillCascadeOnDelete(false);
 
@@ -210,6 +200,10 @@ namespace ShopQuocViet.Models
                 .HasMany(e => e.GioHang)
                 .WithRequired(e => e.Sach)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ChiTietDH>()
+                .Property(e => e.MaND)
+                .IsUnicode(false);
 
             modelBuilder.Entity<TTSach>()
                 .Property(e => e.MaSach)

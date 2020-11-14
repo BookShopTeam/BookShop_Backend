@@ -17,7 +17,7 @@
     <AssemblyName>ShopQuocViet</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -165,6 +165,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Controllers\ChiTietReviewController.cs" />
     <Compile Include="Controllers\ChiTietSPController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
@@ -176,19 +178,21 @@
     <Compile Include="Controllers\GioiThieuController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReviewSachController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ThanhToanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ANH.cs" />
-    <Compile Include="Models\BinhLuan.cs" />
-    <Compile Include="Models\BookModel.cs" />
+    <Compile Include="Models\BookModel1.cs" />
+    <Compile Include="Models\ChiTietDH.cs" />
+    <Compile Include="Models\ChiTietDHSession.cs" />
     <Compile Include="Models\ChuDe.cs" />
     <Compile Include="Models\CTHoaDon.cs" />
+    <Compile Include="Models\DanhGia.cs" />
     <Compile Include="Models\DanhMuc.cs" />
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\HoaDon.cs" />
+    <Compile Include="Models\Huyen.cs" />
     <Compile Include="Models\ItemCart.cs" />
     <Compile Include="Models\LoaiTaiKhoan.cs" />
     <Compile Include="Models\NguoiDung.cs" />
@@ -196,16 +200,56 @@
     <Compile Include="Models\Quyen.cs" />
     <Compile Include="Models\Sach.cs" />
     <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Models\Tinh.cs" />
     <Compile Include="Models\TTSach.cs" />
+    <Compile Include="Models\ViewChiTietHD.cs" />
     <Compile Include="Models\ViewTenDM.cs" />
+    <Compile Include="Models\Xa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Content\assets\arrow-down.svg" />
+    <Content Include="Areas\Admin\Content\assets\arrow-right-black.svg" />
+    <Content Include="Areas\Admin\Content\assets\arrow-right.svg" />
+    <Content Include="Areas\Admin\Content\assets\ellipse1.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-book.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-check.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-dashboard.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-edit.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-email.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-facebook.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-logout.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-pencil.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-return.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-settings.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-tag.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-trash-black.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-trash.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-twitter.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-user.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-users.svg" />
+    <Content Include="Areas\Admin\Content\assets\icon-x.svg" />
+    <Content Include="Areas\Admin\Content\assets\logo.svg" />
+    <Content Include="Areas\Admin\Content\assets\profile.jpg" />
+    <Content Include="Areas\Admin\Content\assets\profile1.jpg" />
+    <Content Include="Areas\Admin\Content\css\main.css" />
+    <Content Include="Areas\Admin\Content\images\product1.jpg" />
+    <Content Include="Areas\Admin\Content\images\product2.jpg" />
+    <Content Include="Areas\Admin\Content\images\product3.jpg" />
+    <Content Include="Areas\Admin\Content\images\slide1.jpg" />
+    <Content Include="Areas\Admin\Content\images\slide2.jpg" />
+    <Content Include="Areas\Admin\Content\images\slide3.jpg" />
+    <Content Include="Areas\Admin\Content\images\slide4.jpg" />
+    <Content Include="Areas\Admin\Content\js\main.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\alertify.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\cssNganLuong.css" />
+    <Content Include="Content\css\default.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\Login.css" />
+    <Content Include="Content\css\main.css" />
     <Content Include="Content\css\myStyle.css" />
     <Content Include="Content\css\owl.carousel.min.css" />
     <Content Include="Content\css\PageList.css" />
@@ -291,7 +335,9 @@
     <Content Include="Content\images\AnhSanPham240073.jpg" />
     <Content Include="Content\images\AnhSanPham506406240158.jpg" />
     <Content Include="Content\images\anhVoNguyenGiap.jpg" />
+    <Content Include="Content\images\banks.PNG" />
     <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\cod.PNG" />
     <Content Include="Content\images\iconCart.png" />
     <Content Include="Content\images\img1.jpg" />
     <Content Include="Content\images\img2.jpg" />
@@ -318,10 +364,13 @@
     <Content Include="Content\images\slide3.jpg" />
     <Content Include="Content\images\slide4.jpg" />
     <Content Include="Content\images\thumb1.jpg" />
+    <Content Include="Content\js\ajax-mail.js" />
+    <Content Include="Content\js\ajaxClent.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\owl.carousel.min.js" />
+    <Content Include="Content\js\plugins.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -338,6 +387,13 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\Index.cshtml" />
+    <Content Include="Areas\Admin\Content\css\main.css.map" />
+    <Content Include="Areas\Admin\Views\AdminHome\XemSP.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\ThanhVien.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -349,6 +405,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\css\plugins.css" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config">
@@ -389,13 +446,26 @@
     <Content Include="Views\GioHang\GioTrong.cshtml" />
     <Content Include="Views\GioHang\ChiTietSach.cshtml" />
     <Content Include="Views\TaiKhoan\DangKy.cshtml" />
-    <Content Include="Views\Test\Register.cshtml" />
     <Content Include="Views\GioHang\PartialItem.cshtml" />
     <Content Include="Views\GioHang\GHKhachVangLai.cshtml" />
     <Content Include="Views\GioHang\PartialItemKH.cshtml" />
+    <Content Include="Views\GioHang\CheckItem.cshtml" />
+    <Content Include="Views\ThanhToan\Payment.cshtml" />
+    <Content Include="Views\ThanhToan\formCheckOut.cshtml" />
+    <Content Include="Views\ThanhToan\SanPham.cshtml" />
+    <Content Include="Views\ThanhToan\DatHang.cshtml" />
+    <Content Include="Views\ThanhToan\ThongTinCaNhan.cshtml" />
+    <Content Include="Views\GioHang\CheckItemSession.cshtml" />
+    <Content Include="Views\ThanhToan\SanPhamSession.cshtml" />
+    <Content Include="Views\GioHang\DonHang.cshtml" />
+    <Content Include="Views\GioHang\ChiTietDH.cshtml" />
+    <Content Include="Views\GioHang\TimKiemDonHang.cshtml" />
+    <Content Include="Views\GioHang\DonHangTrong.cshtml" />
+    <Content Include="Views\ThanhToan\Tinh.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -435,11 +505,12 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52271</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52271/</IISUrl>
+          <IISUrl>
+          </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -12,16 +12,16 @@ namespace ShopQuocViet.Models
         [Key]
         [Column(Order = 0)]
         [StringLength(10)]
-        public string MaHD { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        [StringLength(10)]
         public string MaSach { get; set; }
 
         public int? SoLuong { get; set; }
 
         public int? DonGia { get; set; }
+
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MaHD { get; set; }
 
         public virtual Sach Sach { get; set; }
 

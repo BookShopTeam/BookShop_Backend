@@ -13,8 +13,8 @@ namespace ShopQuocViet.Models
         public Sach()
         {
             ANH = new HashSet<ANH>();
-            BinhLuan = new HashSet<BinhLuan>();
             CTHoaDon = new HashSet<CTHoaDon>();
+            DanhGia1 = new HashSet<DanhGia>();
             GioHang = new HashSet<GioHang>();
         }
 
@@ -42,9 +42,6 @@ namespace ShopQuocViet.Models
 
         public double? DanhGia { get; set; }
 
-        [StringLength(30)]
-        public string LinkRe { get; set; }
-
         [StringLength(50)]
         public string KhoiLuong { get; set; }
 
@@ -68,12 +65,12 @@ namespace ShopQuocViet.Models
         public virtual ICollection<ANH> ANH { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BinhLuan> BinhLuan { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTHoaDon> CTHoaDon { get; set; }
 
         public virtual ChuDe ChuDe { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DanhGia> DanhGia1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GioHang> GioHang { get; set; }

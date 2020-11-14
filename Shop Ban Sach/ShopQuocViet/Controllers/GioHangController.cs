@@ -9,7 +9,7 @@ namespace ShopQuocViet.Controllers
     public class GioHangController : Controller
     {
         // GET: GioHang
-        BookModel db = new BookModel();
+        BookModel1 db = new BookModel1();
 
         public List<ItemCart> LayGioHang()
         {
@@ -27,8 +27,8 @@ namespace ShopQuocViet.Controllers
 
         public ActionResult Index()
         {
-
-            if(Session["TaiKhoan"] == null)
+          
+            if (Session["TaiKhoan"] == null)
             {
                 List<ItemCart> lstGioHang = LayGioHang();
                 if (lstGioHang.Count() == 0)
@@ -39,7 +39,34 @@ namespace ShopQuocViet.Controllers
             }
             else
             {
+                List<ItemCart> lstGioHang = LayGioHang();
                 var ND = (NguoiDung)Session["TaiKhoan"];
+                if (lstGioHang.Count() == 0)
+                {
+                    
+                }
+                else
+                {
+                    GioHang sGH = new GioHang();
+                    foreach(var item in lstGioHang)
+                    {
+                        sGH.MaND = ND.TenDN;
+                        var SachOfGio = db.GioHang.Where(m => m.MaSach == item.MaSach).Where(m => m.MaND == sGH.MaND).ToList();
+                        if (SachOfGio.Count() == 0)
+                        {
+                            sGH.MaSach = item.MaSach;
+                            sGH.SoLuong = item.SoLuong;
+                            db.GioHang.Add(sGH);
+                        }
+                        else
+                        {
+                            SachOfGio[0].SoLuong += item.SoLuong;
+                        }
+                       
+                        db.SaveChanges();
+                    }
+                    Session["GioHang"] = null;
+                }
                 var GioHang = db.GioHang.Where(KH => KH.MaND == ND.TenDN.ToString()).ToList();
                 if (GioHang.Count() == 0)
                 {
@@ -178,7 +205,7 @@ namespace ShopQuocViet.Controllers
                     ItemOfCartKH.SoLuong += ItemOfCartKH.SoLuong;
                 }
 
-                return PartialView("Index", "GioHang");
+                return PartialView("GHKhachVangLai",lstGioHang);
             }
             else
             {
@@ -200,8 +227,8 @@ namespace ShopQuocViet.Controllers
                     ItemOfCart.SoLuong += ItemOfCart.SoLuong;
                     db.SaveChanges();
                 }
-
-                return RedirectToAction("Index", "GioHang");
+                var gioHang = db.GioHang.Where(m => m.MaND == ND.TenDN).ToList();
+                return PartialView("Index", gioHang);
             }
         }
         public ActionResult ThemSP2(string maSach)
@@ -229,7 +256,7 @@ namespace ShopQuocViet.Controllers
                     ItemOfCartKH.SoLuong += ItemOfCartKH.SoLuong;
                 }
 
-                return PartialView("Index", "GioHang");
+                return PartialView("GHKhachVangLai", "GioHang");
             }
             else
             {
@@ -254,6 +281,224 @@ namespace ShopQuocViet.Controllers
 
                 return View("Index", "ChiTietSP");
             }
+        }
+        [HttpGet]
+        public ActionResult CheckItem(string maSach)
+        {
+            if(Session["TaiKhoan"] == null)
+            {
+                List<ItemCart> lstGH = LayGioHang();
+                var item = lstGH.Where(m => m.MaSach == maSach).ToList();
+                if(item != null)
+                {
+                    return PartialView("CheckItemSession", item);
+                }
+                else
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+            }
+            else
+            {
+                NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
+                var item = db.GioHang.Where(m => m.MaSach == maSach && m.MaND == ND.TenDN).ToList();
+                if (item != null)
+                {
+                    return PartialView("CheckItem", item);
+                }
+                else
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+            }
+          
+           
+        }
+        [HttpPost]
+        public ActionResult check(string maSach)
+        {
+            if(Session["TaiKhoan"] == null)
+            {
+                List<ItemCart> lstGH = LayGioHang();
+                var item = lstGH.Where(m => m.MaSach == maSach).ToList();
+                if(item != null)
+                {
+                    item[0].Chon = true;
+                    db.SaveChanges();
+                    return null;
+                }
+                else
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+            }
+            else
+            {
+                NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
+                var item = db.GioHang.Where(m => m.MaSach == maSach && m.MaND == ND.TenDN).ToList();
+                if (item != null)
+                {
+                    item[0].Chon = true;
+                    db.SaveChanges();
+                    return null;
+                }
+                else
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+
+            }
+
+        }
+        [HttpPost]
+        public ActionResult unCheck(string maSach)
+        {
+            if (Session["TaiKhoan"] == null)
+            {
+                List<ItemCart> lstGH = LayGioHang();
+                var item = lstGH.Where(m => m.MaSach == maSach).ToList();
+                if (item != null)
+                {
+                    item[0].Chon = true;
+                    db.SaveChanges();
+                    return null;
+                }
+                else
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+            }
+            else
+            {
+                NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
+                var item = db.GioHang.Where(m => m.MaSach == maSach && m.MaND == ND.TenDN).ToList();
+                if (item != null)
+                {
+                    item[0].Chon = false;
+                    db.SaveChanges();
+                    return null;
+                }
+                else
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+            }
+        }
+        [HttpPost]
+        public ActionResult upDate(string maSach, int soluong)
+        {
+            if (Session["TaiKhoan"] != null)
+            {
+                NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
+                var item = db.GioHang.Where(m => m.MaSach == maSach && m.MaND == ND.TenDN).ToList();
+                if (item != null)
+                {
+                    item[0].SoLuong = soluong;
+                    db.SaveChanges();
+                    return null;
+                }
+                else
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+            }
+            else
+            {
+                List<ItemCart> lstGioHang = LayGioHang();
+                var item = lstGioHang.Where(m => m.MaSach == maSach).ToList();
+                if (item != null)
+                {
+                    item[0].SoLuong = soluong;
+                    db.SaveChanges();
+                    return null;
+                }
+                else
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+
+            }
+           
+
+        }
+        public string SoLuongLoaiSach()
+        {
+            if (Session["TaiKhoan"] == null)
+            {
+                List<ItemCart> lstGioHang = LayGioHang();
+                var sl = lstGioHang.Count();
+                return sl.ToString();
+            }
+            else
+            {
+                NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
+                var sl = db.GioHang.Where(m=>m.MaND == ND.TenDN).Count();
+                return sl.ToString();
+            }
+        }
+        [Authorize]
+        public ActionResult DonHang()
+        {
+            if(Session["TaiKhoan"] == null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+            NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
+            var lstDonHang = db.HoaDon.Where(m => m.MaND == ND.TenDN).ToList();
+            return View(lstDonHang);
+        }
+        [Authorize]
+        public ActionResult ChiTietDH(int MaHD,string MaND)
+        {
+            NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
+            if(ND == null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+            else
+            {
+                if (ND.TenDN == MaND)
+                {
+                    var lstDonHang = db.ViewChiTietHD.Where(m => m.MaHD == MaHD).ToList();
+                    return View(lstDonHang);
+                }
+                else
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+            }
+           
+           
+        }
+        public ActionResult TheoDoiDonHang()
+        {
+            return View("TimKiemDonHang");
+        }
+        [HttpPost]
+        public ActionResult TimKiemDH(FormCollection f)
+        {
+            try
+            {
+                var MaHD = Convert.ToInt32(f["search"]);
+                var DH = db.HoaDon.Where(m => m.MaHD == MaHD).ToList();
+                return View("DonHang", DH);
+            }
+            catch
+            {
+                ViewBag.MaDH = f["search"];
+                return View("DonHangTrong");
+            }
+            
+           
         }
 
     }

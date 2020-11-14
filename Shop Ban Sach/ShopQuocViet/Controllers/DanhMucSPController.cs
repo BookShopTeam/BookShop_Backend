@@ -9,7 +9,7 @@ namespace ShopQuocViet.Controllers
 {
     public class DanhMucSPController : Controller
     {
-        BookModel db = new BookModel();
+        BookModel1 db = new BookModel1();
         // GET: DanhMucSP
         public ActionResult Index()
         {

@@ -1,0 +1,58 @@
+﻿@*@model PizzaHut.Models.Muser*@
+
+<div class="col-lg-7 mb--20">
+    <!-- Billing Address -->
+
+    <div id="billing-form" class="mb-40">
+        <h4 class="checkout-title text-danger ">Thông tin giao hàng</h4>
+        <div class="row">
+
+            <div class="col-12 mb--20">
+                <label>Họ tên bạn  <span class="text-danger">*</span></label>
+                <input type="text" name="deliveryname" value="" placeholder="Họ tên bạn" required>
+            </div>
+
+            <div class="col-md-6 col-12 mb--20">
+                <label>Địa chỉ email <span class="text-danger">*</span></label>
+                <input type="email" value="" name="deliveryemail" placeholder="Địa chỉ email" required>
+            </div>
+            <div class="col-md-6 col-12 mb--20">
+                <label>Số điện thoại nhận hàng <span class="text-danger">*</span></label>
+                <input type="text" name="deliveryphone" value="" placeholder="Số điện thoại nhận hàng" required>
+            </div>
+            <div class="col-12 mb--20">
+                <div class="form-group">
+                    <label>Tỉnh/ Thành phố<span class="text-danger">*</span></label>
+                    <select class="form-control form-control-lg" id="province" required>
+                        <option value="1">Chọn Tỉnh/Thành Phố</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 mb--20">
+                <label>Quận/Huyện<span class="text-danger">*</span></label>
+                <select class="form-control form-control-lg" id="district" required>
+                    <option value="">Chọn Quận/Huyện</option>
+
+                </select>
+            </div>
+            <div class="col-12 mb--20">
+                <label>Phường/Xã<span class="text-danger">*</span></label>
+                <select class="form-control form-control-lg" id="villeage" required>
+                    <option value="">Chọn Phường/Xã</option>
+                   
+                </select>
+            </div>         
+            <div class="col-12 mb--20">
+                <label>Địa chỉ  <span class="text-danger">*</span></label>
+                <input type="text" name="deliveryaddress" value="" placeholder="Đường, số nhà..." required>
+            </div>
+        </div>
+    </div>
+    <div class="order-note-block mt--30">
+        <label for="order-note">Ghi chú đơn hàng  <span class="text-danger">*</span></label>
+        <textarea id="order-note" name="deliveryNote" cols="30" rows="10" class="order-note"
+                  placeholder="Ghi chú về đơn hàng của bạn, ví dụ: ghi chú đặc biệt để giao hàng."></textarea>
+    </div>
+    <!-- Slide Down Trigger  -->
+</div>
+

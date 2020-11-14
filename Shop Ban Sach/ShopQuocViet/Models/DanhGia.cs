@@ -6,8 +6,8 @@ namespace ShopQuocViet.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("BinhLuan")]
-    public partial class BinhLuan
+    [Table("DanhGia")]
+    public partial class DanhGia
     {
         [Key]
         [Column(Order = 0)]
@@ -19,8 +19,7 @@ namespace ShopQuocViet.Models
         [StringLength(30)]
         public string MaND { get; set; }
 
-        [Column("BinhLuan", TypeName = "text")]
-        public string BinhLuan1 { get; set; }
+        public int? SoSao { get; set; }
 
         public virtual Sach Sach { get; set; }
 

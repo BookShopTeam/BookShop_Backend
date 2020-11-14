@@ -9,5 +9,6 @@ namespace ShopQuocViet.Models
     {
         public string MaSach;
         public int SoLuong;
+        public Boolean Chon = false;
     }
 }

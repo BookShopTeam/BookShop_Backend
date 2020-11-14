@@ -10,7 +10,7 @@ namespace ShopQuocViet.Controllers
     public class DanhSachSPController : Controller
     {
         // GET: DanhSachSP
-        BookModel db = new BookModel();
+        BookModel1 db = new BookModel1();
         public ActionResult Index(string maCD,int? page)
         {
             var sach = db.ChuDe.SingleOrDefault(s=>s.MaCD == maCD);

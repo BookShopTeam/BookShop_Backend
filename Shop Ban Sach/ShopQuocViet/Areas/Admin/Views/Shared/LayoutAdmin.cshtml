@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="~/Areas/Admin/Content/css/main.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="dashboard">
+                <div class="left">
+                    <span class="left__icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <div class="left__content">
+                        <div class="left__logo">LOGO</div>
+                        <div class="left__profile">
+                            <div class="left__image"><img src="~/Areas/Admin/Content/assets/profile.jpg" alt=""></div>
+                            <p class="left__name">Quản trị viên</p>
+                        </div>
+                        <ul class="left__menu">
+                            <li class="left__menuItem">
+                                <a href="~/Admin/AdminHome/Index" class="left__title"><img src="~/Areas/Admin/Content/assets/icon-dashboard.svg" alt="">Trang chủ</a>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="~/Areas/Admin/Content/assets/icon-tag.svg" alt="">Sản Phẩm<img class="left__iconDown" src="~/Areas/Admin/Content/assets/arrow-down.svg" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="#">Chèn Sản Phẩm</a>
+                                    <a class="left__link" href="#">Xem Sản Phẩm</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="~/Areas/Admin/Content/assets/icon-edit.svg" alt="">Danh Mục<img class="left__iconDown" src="~/Areas/Admin/Content/assets/arrow-down.svg" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="#">Chèn Danh Mục</a>
+                                    <a class="left__link" href="#">Xem Danh Mục</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="~/Areas/Admin/Content/assets/icon-book.svg" alt="">Thể Loại<img class="left__iconDown" src="~/Areas/Admin/Content/assets/arrow-down.svg" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="#">Chèn Chủ Đề</a>
+                                    <a class="left__link" href="#">Xem Chủ Đề</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <a href="" class="left__title"><img src="~/Areas/Admin/Content/assets/icon-book.svg" alt="">Đơn Đặt Hàng</a>
+                            </li>
+                            <li class="left__menuItem">
+                                <a href="~/Admin/AdminHome/ThanhVien" class="left__title"><img src="assets/icon-users.svg" alt="">Thành Viên</a>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="~/Areas/Admin/Content/assets/icon-user.svg" alt="">Admin<img class="left__iconDown" src="~/Areas/Admin/Content/assets/arrow-down.svg" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="~/Admin/AdminHome/ChenAdmin">Chèn Admin</a>
+                                    <a class="left__link" href="~/Admin/AdminHome/XemAdmin">Xem Admins</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <a href="~/Admin/AdminHome/DangXuat" class="left__title"><img src="~/Areas/Admin/Content/assets/icon-logout.svg" alt="">Đăng Xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="~/Areas/Admin/Content/js/main.js"></script>
+</body>
+</html>

@@ -17,9 +17,9 @@
                 <div class="col-sm-10">
                     <div class="breadcrumb">
                         <div class="container">
-                          <a class="breadcrumb-item" href="Home/index">Shop Quốc Việt</a>
-                                <a class="breadcrumb-item" href="DanhSachSP/index">Danh mục sách</a>
-                                <a class="breadcrumb-item" name = "TenCD" href="DanhSachSP/index">@item.TenCD</a>
+                          <a class="breadcrumb-item" href="~/Home/Index">Shop Quốc Việt</a>
+                                <a class="breadcrumb-item" href="~/DanhMucSP/Index">Danh mục sách</a>
+                                <a class="breadcrumb-item" name = "TenCD" href="@Url.Action("Index","DanhSachSP",new {maCD = @item.MaCD})">@item.TenCD</a>
                                 <span class="breadcrumb-item active">@item.TenSach</span> 
 
                         </div>
@@ -42,7 +42,7 @@
                                                     <h3>@item.TenSach</h3>
                                                 </li>
                                                 <li>
-                                                    <span class="name">Giá thị trường</span><span class="clm">:</span>
+                                                    <span class="name">Giá bìa: </span><span class="clm">:</span>
                                                     <span class="price">@item.GiaBia đồng</span>
                                                 </li>
                                                 <li>
@@ -63,11 +63,12 @@
                                                     {
                                                         <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
                                                     }
-
+                                                 
                                                 </li>
+                                              
                                             </ul>
                                             <div class="btn-sec">
-                                                @Ajax.ActionLink("Thêm vào giỏ hàng", "ThemSP2", "GioHang", new { maSach = @item.MaSach}, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ParentItem", InsertionMode = InsertionMode.Replace }, new { @class = "btn butThemVaoGioHang",onclick = "myFunction()" })
+                                                @Ajax.ActionLink("Thêm vào giỏ hàng", "ThemSP2", "GioHang", new { maSach = @item.MaSach}, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ParentItem", InsertionMode = InsertionMode.Replace }, new { @class = "btn butThemVaoGioHang",onclick = "myFunction(); loadGH()" })
                                                 <a href="@Url.Action("ThemSP1","GioHang",new {maSach = @item.MaSach})" class="btn black">Mua ngay</a>
                                                 <div id="snackbar">Bạn đã thêm vào giỏ hàng thành công</div>
                                             </div>
@@ -116,21 +117,67 @@
                         <tr>
                             <td><pre>Ngày phát hành:    <b>@item.NgayPhatHanh.ToString().Split(' ')[0]</b></pre></td>
                         </tr>
-                        <tr>
-                            @if (@item.LinkRe != null)
-                            {
-                                <td><pre>Link review:       <a>@item.LinkRe</a></pre></td>
-                            }
-                            else
-                            {
-                                <td><pre>Link review:       <b>chưa có bài review</b></pre></td>
-                            }
-
-
-                        </tr>
                     </tbody>
                 </table>
-            </div>
+                <div class="stars">
+                    <b>Đánh giá của bạn: </b>
+
+                        @if (@ViewBag.MaND == "")
+                        {
+
+                            <form action="">
+                               
+                                <label class="star star-5" for="star-5" onclick="Request(5)"></label>
+                              
+                                <label class="star star-4" for="star-4" onclick="Request(4)"></label>
+                               
+                                <label class="star star-3" for="star-3" onclick="Request(3)"></label>
+                              
+                                <label class="star star-2" for="star-2" onclick="Request(2)"></label>
+                               
+                                <label class="star star-1" for="star-1" onclick="Request(1)"></label>
+                            </form>
+
+                        }
+                        else
+                        {
+                            <form action="">
+                                @if (ViewBag.SoSao == null)
+                                {
+
+                                <input class="star star-5" id="star-5" type="radio" onclick="Request(5); loadGH('@item.MaSach')" name="star" />
+                                <label class="star star-5" for="star-5"></label>
+                                <input class="star star-4" id="star-4" type="radio" onclick="Request(4); loadGH('@item.MaSach')" name="star" />
+                                <label class="star star-4" for="star-4"></label>
+                                <input class="star star-3" id="star-3" type="radio" onclick="Request(3); loadGH('@item.MaSach') " name="star" />
+                                <label class="star star-3" for="star-3"></label>
+                                <input class="star star-2" id="star-2" type="radio" onclick="Request(2); loadGH('@item.MaSach') " name="star" />
+                                <label class="star star-2" for="star-2"></label>
+                                <input class="star star-1" id="star-1" type="radio" onclick="Request(1); loadGH('@item.MaSach')" name="star" />
+                                <label class="star star-1" for="star-1"></label>
+
+                                }
+                                else
+                                {
+
+                                    for (var i = 5; i > Convert.ToInt32(ViewBag.SoSao); i--)
+                                    {
+                                        <input class="star star-@i" id="star-@i" type="radio" onclick="Request(@i); loadGH('@item.MaSach')" name="star" />
+                                        <label class="star star-@i" for="star-@i"></label>
+                                    }
+                                    for (var i = Convert.ToInt32(ViewBag.SoSao); i >= 1 ; i--)
+                                    {
+                                        <input class="star star-@i" id="star-@i" type="radio" onclick="Request(@i); loadGH('@item.MaSach')" name="star" />
+                                        <label class="star star-@i" style="color:orange" for="star-@i"></label>
+                                    }
+
+                                }
+                            </form>
+                        }
+
+                    </div>
+                </div>
+
             <div class="col-sm-5">
                 <br />
                 <h3>Mô tả:</h3>
@@ -138,13 +185,55 @@
                     @item.MoTa
                 </p>
             </div>
+            <div class="col-sm-1">
+
+            </div>
         </div>
     </div>
-    <div class="title">
-        @Html.Action("SachCungCD")
-    </div>
     </section>
+    <div id="snackbar1">Bạn đã đánh giá thành công</div>
 }
 
+<script>
+    function Request(num) {
+        var maSach = '@ViewBag.MaSach';
+        var TaiKhoan = '@ViewBag.MaND';
 
+        if (TaiKhoan == "")
+        {
+            alert("Đánh giá sản phẩm chỉ dành cho thành viên của shop");
+            $(".star").css("color", "#000");
+        }
+        else
+        {
+            $(".star").css("color", "#000");
+             $.ajax({
+                 type: "POST",
+                data: {
+                    star: num,
+                    maSach: maSach
+                },
+                url: '@Url.Action("DanhGia","ChiTietSP")',
+                success: function () {
+                    myFunction1();
+               }
+            });
+        }
+
+    }
+
+    function loadGH() {
+        setTimeout(function () {
+              $.ajax({
+                 type: "GET",
+                url: '@Url.Action("SoLuongLoaiSach","GioHang")',
+                success: function (response) {
+                    $(".quntity").html(response);
+               }
+            },);
+        },2000)
+
+    }
+
+</script>
 

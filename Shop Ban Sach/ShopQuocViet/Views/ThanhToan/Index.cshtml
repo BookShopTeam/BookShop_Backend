@@ -3,84 +3,121 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/plugins.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/main.css" />
+<link href="~/Content/css/alertify.min.css" rel="stylesheet" />
+<link href="~/Content/css/default.min.css" rel="stylesheet" />
+<script src="~/Content/js/plugins.js"></script>
+<link href="~/Content/css/cssNganLuong.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="~/Content/css/ThangStyle.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-1">
+        <div class="col-md-5">
+            <div class="breadcrumb">
+                <div class="container">
+                    <a class="breadcrumb-item" href="~/Home/Index">Shop Quốc Việt</a>
+                    <span class="breadcrumb-item active">Thanh Toán</span>
 
-        </div>
-        <div class="col-sm-10">
-            <table class="table">
-                <div class="TieuDeThanhToan">
-                    <p>Thông tin thanh toán:</p>
                 </div>
-                <tr>
-                    <td class="ThanhToan">
-                        <label><b>Họ và tên:</b></label>
-                    </td>
-                    <td class="ThanhToan">
-                        <input type="text" placeholder="họ và tên" class="inputThanhToan" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ThanhToan">
-                        <label><b>Số điện thoại:</b></label>
-                    </td>
-                    <td class="ThanhToan">
-                        <input type="text" placeholder="số điện thoại" class="inputThanhToan" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ThanhToan">
-                        <label><b>Địa chỉ:</b></label>
-                    </td>
-                    <td class="ThanhToan">
-                        <input type="text" placeholder="địa chỉ" class="inputThanhToan" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ThanhToan">
-                        <label><b>Nam/Nữ:</b></label>
-                    </td>
-                    <td class="ThanhToan">
-                        <span>Nam</span><input type="radio" name="customer_gender" value="nam" class="optionSex">
-                        <span>Nữ</span><input type="radio" name="customer_gender" value="nu" class="optionSex">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ThanhToan">
-                        <label><b>Số tiền:</b></label>
-                    </td>
-                    <td class="ThanhToan">
-                        <p><b>236000 đồng</b></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ThanhToan"></td>
-                    <td class="ThanhToan">
-                        <div class="btn-sec">
-                            <a href="#" class="btn orange-btn datHang" onclick="myFunction()">Đặt hàng</a>
-                            <div id="snackbar">Bạn đã đặt hàng thành công</div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-sm-1">
-
-        </div>
+            </div>
+       </div>
     </div>
 </div>
+            <main id="content" class="page-section inner-page-sec-padding-bottom space-db--20 ">
+                <div class="container bg-white card">
+                    <div class="row">
+                        <form method="POST" action="/ThanhToan/DatHang">
+                            <div class="col-12">
+                                <!-- Checkout Form s-->
+                                <div class="checkout-form">
+                                    <div class="row row-40">
+                                        <div class="col-12">
+                                            <div class="checkout-quick-box">
+                                                <p>
+                                                    <i class="far fa-sticky-note"></i>Chọn hình thức thanh toán ? <a href="javascript:"
+                                                                                                                     class="slide-trigger" onclick="HienThi()" data-target="#ad">
+                                                        Click để chọn hình thức thanh toán
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <!-- Slide Down Blox ==> Cupon Box -->
+                                            <div class="checkout-slidedown-box" id="ad">
+                                                @Html.Partial("Payment")
+                                            </div>
+                                        </div>
+                                        @Html.Partial("formCheckOut")
+
+                                        <div class="col-lg-5">
+                                            <div class="row">
+                                                <!-- Cart Total -->
+                                                <div class="col-12">
+                                                    <div class="checkout-cart-total">
+
+                                                        <h2 class="checkout-title">Giỏ hàng</h2>
+                                                        <h4>Sản phẩm <span>Tổng</span></h4>
+                                                        @Html.Action("SanPham")
+                                                        <p>Tạm tính <span> VND</span></p>
+                                                        <p>Tiền shipping <span>0 VND</span></p>
+                                                        <input type="hidden" value="100" name="sumOrder" />
+                                                        <h4>Tổng tiền <span name="TongTien" id="TongTien">@ViewBag.sum VND</span></h4>
+
+
+
+                                                        <div class="term-block">
+                                                            <input type="checkbox" id="accept_terms2" required="">
+                                                            <label for="accept_terms2">
+                                                                Tôi đã đọc và chấp nhận các điều khoản và điều kiện
+                                                            </label>
+                                                        </div>
+                                                        @if (ViewBag.SLSP != 0)
+                                                        {
+                                                            <button type="submit" class="place-order w-100">Đặt hàng</button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="button" onclick="CheckCart()" class="place-order w-100">Đặt hàng</button>
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
 <script>
-      function myFunction() {
-          var x = document.getElementById("snackbar");
-          x.className = "show";
-          setTimeout(function () {
-              x.className = x.className.replace("show", "");
-          }, 3000);
-      }
+    function HienThi() {
+        $("#ad").toggle();
+    }
+    function HienThiNH() {
+        $("#NH1").toggle();
+    }
+    function CheckCart() {
+        alert("Không đơn hàng để thanh toán");
+    }
+    function LoadTinh() {
+        $.ajax({
+            url: '/ThanhToan/Tinh',
+            dataType: 'json',
+            type: 'POST',
+            success: function (response) {
+                alert(response);
+            }
+        }            
+        )
+    }
+
+    $(document).ready(function () {
+        LoadTinh();
+        
+       
+    });
 </script>
-
-
-

@@ -1,0 +1,6 @@
+﻿@using ShopQuocViet.Models
+@model List<Tinh>
+    @foreach (var item in Model)
+    {
+        <option value="@item.MaTinh">@item.TenTinh</option>
+    }

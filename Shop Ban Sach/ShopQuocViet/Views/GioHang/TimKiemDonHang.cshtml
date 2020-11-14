@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class=" col-sm-2">
+            <a href="/GioHang/DonHang">Đơn hàng của bạn</a>
+        </div>
+        <div class=" col-sm-8">
+            <div class="mainTK">
+                <!-- Another variation with a button -->
+                <form class="input-group" method="post" action="~/GioHang/TimKiemDH">
+                    <input type="text" name="search" class="form-control" placeholder="Gõ mã đơn hàng cần theo dõi">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+        <div class=" col-sm-2">
+
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+</div>
+
+
+
+
+
+
