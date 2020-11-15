@@ -455,30 +455,16 @@ namespace ShopQuocViet.Controllers
             var lstDonHang = db.HoaDon.Where(m => m.MaND == ND.TenDN).ToList();
             return View(lstDonHang);
         }
-        [Authorize]
-        public ActionResult ChiTietDH(int MaHD,string MaND)
+     
+        public ActionResult ChiTietDH(int MaHD)
         {
-            NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
-            if(ND == null)
-            {
-                return RedirectToAction("DangNhap", "TaiKhoan");
-            }
-            else
-            {
-                if (ND.TenDN == MaND)
-                {
-                    var lstDonHang = db.ViewChiTietHD.Where(m => m.MaHD == MaHD).ToList();
-                    return View(lstDonHang);
-                }
-                else
-                {
-                    Response.StatusCode = 404;
-                    return null;
-                }
-            }
-           
-           
+               
+            var lstDonHang = db.ViewChiTietHD.Where(m => m.MaHD == MaHD).ToList();
+            return View(lstDonHang);
         }
+           
+           
+        
         public ActionResult TheoDoiDonHang()
         {
             return View("TimKiemDonHang");
@@ -496,9 +482,7 @@ namespace ShopQuocViet.Controllers
             {
                 ViewBag.MaDH = f["search"];
                 return View("DonHangTrong");
-            }
-            
-           
+            }          
         }
 
     }

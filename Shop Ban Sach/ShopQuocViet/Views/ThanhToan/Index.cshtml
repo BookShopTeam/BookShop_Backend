@@ -60,10 +60,10 @@
                                                         <h2 class="checkout-title">Giỏ hàng</h2>
                                                         <h4>Sản phẩm <span>Tổng</span></h4>
                                                         @Html.Action("SanPham")
-                                                        <p>Tạm tính <span> VND</span></p>
-                                                        <p>Tiền shipping <span>0 VND</span></p>
-                                                        <input type="hidden" value="100" name="sumOrder" />
-                                                        <h4>Tổng tiền <span name="TongTien" id="TongTien">@ViewBag.sum VND</span></h4>
+                                                        <p>Tạm tính <span id="TienHang">@ViewBag.sum VND</span></p>
+                                                        <p>Tiền shipping <span id="TienShip"></span></p>
+                                                        <input type="hidden" value="" id="sumOrder" name="sumOrder" />
+                                                        <h4>Tổng tiền <span name="TongTien" value="1" id="TongTien">@ViewBag.sum VND</span></h4>
 
 
 
@@ -106,18 +106,118 @@
     function LoadTinh() {
         $.ajax({
             url: '/ThanhToan/Tinh',
-            dataType: 'json',
-            type: 'POST',
-            success: function (response) {
-                alert(response);
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                var html = '<option value="">Chọn Tỉnh/Thành Phố</option>';
+                if (data != null)
+                {
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<option value = "' + data[i].MaTinh + '">' + data[i].TenTinh + '</option>';
+                    }
+                }
+                $("#province").html(html);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown)
             }
-        }            
-        )
+        });
+    }
+    function LoadHuyen() {
+        var maTinh = $("#province").val();
+        $.ajax({
+            url: '/ThanhToan/Huyen',
+            type: "POST",
+            dataType: "json",
+            data: { maTinh: maTinh },
+            success: function (data) {
+                var html = '<option value="">Chọn Huyện/Quận</option>';
+                if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<option value = "' + data[i].MaHuyen + '">' + data[i].TenHuyen + '</option>';
+                    }
+                }
+                $("#district").html(html);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown)
+            }
+        });
+    }
+    function LoadXa() {
+        var maHuyen = $("#district").val();
+        $.ajax({
+            url: '/ThanhToan/Xa',
+            type: "POST",
+            dataType: "json",
+            data: { maHuyen: maHuyen },
+            success: function (data) {
+                var html = '<option value="">Chọn Xã/Phường</option>';
+                if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<option value = "' + data[i].MaXa + '">' + data[i].TenXa + '</option>';
+                    }
+                }
+                $("#villeage").html(html);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown)
+            }
+        });
+    }
+    function LoadTienShip() {
+        var maHuyen = $("#district").val();
+        $.ajax({
+            url: '/ThanhToan/TienShip',
+            type: "POST",
+            dataType: "json",
+            data: { maHuyen: maHuyen },
+            success: function (data) {
+                if (data != null) {
+                    html = data[0].TienShip+" VND"
+                }
+                $("#TienShip").html(html);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown)
+            }
+        });
+    }
+    function LoadTongTien() {
+
+        var tienHang = $("#TienHang").html().split(" ")[0];
+        var tienShip = $("#TienShip").html().split(" ")[0];
+        var tongTien = Number(tienHang) + Number(tienShip);
+        $("#TongTien").html(tongTien);
+        $("#sumOrder").val(tongTien);
+    }
+    function loadDiaChi() {
+      
+        var tinh = $("#province option:selected").text();
+       
+        var huyen = $("#district option:selected").text();
+       
+        var xa = $("#villeage option:selected").text();
+        $("#deliveryaddress").val(xa + ", " + huyen + ", " + tinh);
     }
 
     $(document).ready(function () {
+        // muon lay de set vo cai select2 a` đúng bạn nhưng vẫn chưa load lên dc dữ liệu ấy`
         LoadTinh();
-        
-       
-    });
+        $("#province").change(function () {
+            LoadHuyen();
+        });
+        $("#district").change(function () {
+            LoadTienShip();
+            LoadXa();
+            setTimeout(function () {
+                LoadTongTien();
+            }, 1000);
+
+        });
+        $("#villeage").change(function () {
+            loadDiaChi();
+        });
+    })
+
 </script>

@@ -164,7 +164,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Controllers\ChiTietReviewController.cs" />
@@ -454,7 +453,7 @@
     <Content Include="Views\ThanhToan\formCheckOut.cshtml" />
     <Content Include="Views\ThanhToan\SanPham.cshtml" />
     <Content Include="Views\ThanhToan\DatHang.cshtml" />
-    <Content Include="Views\ThanhToan\ThongTinCaNhan.cshtml" />
+    <Content Include="Views\TaiKhoan\ThongTinCaNhan.cshtml" />
     <Content Include="Views\GioHang\CheckItemSession.cshtml" />
     <Content Include="Views\ThanhToan\SanPhamSession.cshtml" />
     <Content Include="Views\GioHang\DonHang.cshtml" />

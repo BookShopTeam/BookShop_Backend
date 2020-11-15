@@ -17,11 +17,9 @@
                     <thead>
                         <tr>
                             <th style="text-align:center">Mã hóa đơn</th>
-                            <th style="text-align:center">Tài khoản </th>
                             <th style="text-align:center">Thanh toán</th>
                             <th style="text-align:center">Trạng thái vận chuyển</th>
                             <th style="text-align:center">Tổng tiền</th>
-                            <th style="text-align:center">Sđt</th>
                             <th style="text-align:center">Địa chỉ</th>
                         </tr>
                     </thead>
@@ -30,12 +28,10 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td  style="text-align:center" ><a href="@Url.Action("ChiTietDH", "GioHang", new { MaHD = @item.MaHD, MaND = @item.MaND })"> @item.MaHD</a></td>
-                                <td  style="text-align:center">@item.MaND</td>
+                                <td  style="text-align:center" ><a href="@Url.Action("ChiTietDH", "GioHang", new { MaHD = @item.MaHD })"> @item.MaHD</a></td>
                                 <td  style="text-align:center">@item.ThanhToan</td>
                                 <td style="text-align:center">@item.TrangThaiVC</td>
                                 <td style="text-align:center">@item.TongTien</td>
-                                <td style="text-align:center">@item.SDT</td>
                                 <td style="text-align:center">@item.DiaChi</td>
                            </tr>
                         }

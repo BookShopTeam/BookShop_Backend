@@ -138,6 +138,7 @@ namespace ShopQuocViet.Controllers
             else
             {
                 var modelND = db.NguoiDung.Where(m => m.TenDN == ND.TenDN).ToList();
+                ViewBag.MK = Decode(modelND[0].MatKhau);
                 return View("ThongTinCaNhan", modelND);
             }
         }

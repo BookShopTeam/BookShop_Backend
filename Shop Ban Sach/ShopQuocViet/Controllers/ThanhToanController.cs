@@ -40,13 +40,13 @@ namespace ShopQuocViet.Controllers
 
         public ActionResult Index()
         {
-            if(Session["TaiKhoan"] ==  null)
+            if (Session["TaiKhoan"] == null)
             {
                 List<ItemCart> lstGH = LayGioHang();
                 var sp = lstGH.Where(m => m.Chon == true);
                 ViewBag.SLSP = sp.Count();
                 var sum = 0;
-                foreach(var item in sp)
+                foreach (var item in sp)
                 {
                     var sach = db.Sach.Where(m => m.MaSach == item.MaSach).ToList();
                     sum = sum + Convert.ToInt32(sach[0].GiaBan * item.SoLuong);
@@ -60,11 +60,11 @@ namespace ShopQuocViet.Controllers
                 var sp = db.ChiTietDH.Where(m => m.MaND == ND.TenDN).ToList();
                 ViewBag.SLSP = sp.Count();
                 var sum = 0;
-                foreach(var item in sp)
+                foreach (var item in sp)
                 {
-                    sum = sum +  Convert.ToInt32(item.GiaBan*item.SoLuong);
+                    sum = sum + Convert.ToInt32(item.GiaBan * item.SoLuong);
                 }
-                ViewBag.sum = sum; 
+                ViewBag.sum = sum;
                 return View();
             }
         }
@@ -74,10 +74,10 @@ namespace ShopQuocViet.Controllers
             {
                 List<ItemCart> lstGioHang = LayGioHang();
                 var dh = lstGioHang.Where(m => m.Chon == true).ToList();
-                if(dh != null)
+                if (dh != null)
                 {
                     List<ChiTietDHSession> listDH = LayDonHang();
-                    foreach(var item in dh)
+                    foreach (var item in dh)
                     {
                         ChiTietDHSession ct = new ChiTietDHSession();
                         var tenSach = db.Sach.SingleOrDefault(m => m.MaSach == item.MaSach).TenSach;
@@ -86,8 +86,17 @@ namespace ShopQuocViet.Controllers
                         ct.tenSach = tenSach;
                         ct.soLuong = item.SoLuong;
                         ct.giaBan = giaBan;
-                        listDH.Add(ct);
-                        db.SaveChanges();
+                        var sp = listDH.SingleOrDefault(m => m.maSach == item.MaSach);
+                        if(sp!=null)
+                        {
+
+                        }
+                        else
+                        {
+                            listDH.Add(ct);
+                            db.SaveChanges();
+                        }
+                       
                     }
                     return PartialView("SanPhamSession", listDH);
                 }
@@ -96,13 +105,13 @@ namespace ShopQuocViet.Controllers
                     Response.StatusCode = 404;
                     return null;
                 }
-                
+
             }
             else
             {
                 NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
                 var sp = db.ChiTietDH.Where(m => m.MaND == ND.TenDN).ToList();
-                if(sp.Count != 0)
+                if (sp.Count != 0)
                 {
                     return PartialView("SanPham", sp);
                 }
@@ -111,11 +120,11 @@ namespace ShopQuocViet.Controllers
                     Response.StatusCode = 404;
                     return null;
                 }
-               
+
             }
-           
+
         }
-       
+
         [HttpPost]
         public ActionResult DatHang(FormCollection f)
         {
@@ -127,14 +136,13 @@ namespace ShopQuocViet.Controllers
             var HTTT = "Thanh toán sau khi nhận hàng";
             var TrangThaiVC = "Đang vận chuyển";
             var ThanhToan = false;
+            var TongTien = f["sumOrder"];
             var sum = 0;
             if (Session["TaiKhoan"] == null)
             {
                 List<ChiTietDHSession> ListSP = LayDonHang();
-                foreach (var item in ListSP)
-                {
-                    sum = sum + Convert.ToInt32(item.giaBan * item.soLuong);
-                }
+
+                sum = Convert.ToInt32(TongTien);
                 HoaDon hd = new HoaDon();
                 hd.MaND = "VangLai";
                 hd.TenKH = tenKH;
@@ -211,23 +219,51 @@ namespace ShopQuocViet.Controllers
                     db.GioHang.Remove(item);
                     db.SaveChanges();
                 }
-            }           
+            }
             return View();
         }
         public ActionResult Tinh()
         {
-            var tinh = db.Tinh.OrderBy(x => x.TenTinh).ToList();
-            return Json(tinh);
+            var tinh = db.Tinh.Select(m => new
+            {
+                MaTinh = m.MaTinh,
+                TenTinh = m.TenTinh
+            }).ToList();
+            // này gọi là anonymou type, chỉ lấy ra dữ liệu mình cần, chứ đưa nguyên cái object vào, nó có relate nên nó cứ vòng qua cái khóa ngoại nó lấy cái kia, nên bị lỗi trên
+            return Json(tinh, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetAllDistrictId(string maTinh)
+        [HttpPost]
+        public ActionResult Huyen(string maTinh)
         {
-            var data = db.Huyen.Where(x=>x.MaTinh == maTinh).OrderBy(x => x.TenHuyen).ToList();
-            return Json(data, JsonRequestBehavior.AllowGet);
+            var tinh = db.Huyen.Where(m=>m.MaTinh == maTinh).Select(m => new
+            {
+                MaHuyen = m.MaHuyen,
+                TenHuyen = m.TenHuyen
+            }).ToList();
+            // này gọi là anonymou type, chỉ lấy ra dữ liệu mình cần, chứ đưa nguyên cái object vào, nó có relate nên nó cứ vòng qua cái khóa ngoại nó lấy cái kia, nên bị lỗi trên
+            return Json(tinh, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetAllWardId(string maHuyen)
+        [HttpPost]
+        public ActionResult Xa(string maHuyen)
         {
-            var data = db.Xa.Where(x => x.MaHuyen == maHuyen).OrderBy(x => x.TenXa).ToList();
-            return Json(data, JsonRequestBehavior.AllowGet);
+            var tinh = db.Xa.Where(m => m.MaHuyen == maHuyen).Select(m => new
+            {
+                MaXa = m.MaXa,
+                TenXa = m.TenXa
+            }).ToList();
+            // này gọi là anonymou type, chỉ lấy ra dữ liệu mình cần, chứ đưa nguyên cái object vào, nó có relate nên nó cứ vòng qua cái khóa ngoại nó lấy cái kia, nên bị lỗi trên
+            return Json(tinh, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult TienShip(string maHuyen)
+        {
+            var tinh = db.Huyen.Where(m=>m.MaHuyen == maHuyen).Select(m => new
+            {
+                TienShip = m.TienShip
+            }).ToList();
+            // này gọi là anonymou type, chỉ lấy ra dữ liệu mình cần, chứ đưa nguyên cái object vào, nó có relate nên nó cứ vòng qua cái khóa ngoại nó lấy cái kia, nên bị lỗi trên
+            return Json(tinh, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

@@ -29,7 +29,7 @@ namespace ShopQuocViet.Controllers
             var listSachQuanTam = db.TTSach.OrderByDescending(s => s.NgayPhatHanh).Take(8).ToList();
             return PartialView(listSachQuanTam);
         }
-        
+      
         public ActionResult DangXuat()
         {
             Session.Clear();//remove session
