@@ -138,6 +138,12 @@ namespace ShopQuocViet.Controllers
             else
             {
                 var modelND = db.NguoiDung.Where(m => m.TenDN == ND.TenDN).ToList();
+                ViewBag.NgaySinh = modelND[0].NgaySinh.ToString().Split(' ')[0];
+                ViewBag.TenDN = modelND[0].TenDN;
+                ViewBag.TenND = modelND[0].TenND;
+                ViewBag.SDT = modelND[0].SDT;
+                ViewBag.Email = modelND[0].Email;
+                ViewBag.DC = modelND[0].DiaChi;
                 ViewBag.MK = Decode(modelND[0].MatKhau);
                 return View("ThongTinCaNhan", modelND);
             }
@@ -145,6 +151,7 @@ namespace ShopQuocViet.Controllers
         [HttpPost]
         public ActionResult CapNhat(FormCollection f)
         {
+            db.Configuration.ValidateOnSaveEnabled = false;
             NguoiDung ND = (NguoiDung)Session["TaiKhoan"];
             if (ND == null)
             {
@@ -152,21 +159,24 @@ namespace ShopQuocViet.Controllers
             }
             else
             {
-                    var ThanhVien = db.NguoiDung.SingleOrDefault(m => m.TenDN == ND.TenDN);
-                    var pass = f["pass"];
-                    var mk = EncodePassword(pass);
-                    var tenTV = f["usr"];
-                    var nS = Convert.ToDateTime(f["birth"]);
-                    var sdt = f["tel"];
-                    var email = f["email"];
-                    var diaChi = f["addr"];
-                    ThanhVien.SDT = sdt;
-                   
-                   
-                    db.SaveChanges();
-               
+                var ThanhVien = db.NguoiDung.SingleOrDefault(m => m.TenDN == ND.TenDN);
+                var pass = f["pass"];
+                var mk = EncodePassword(pass);
+                var tenTV = f["usr"];
+                var nS = Convert.ToDateTime(f["birth"]);
+                var sdt = f["tel"];
+                var email = f["email"];
+                var diaChi = f["addr"];
+                ThanhVien.MatKhau = mk;
+                ThanhVien.TenND = tenTV;
+                ThanhVien.NgaySinh = nS;
+                ThanhVien.SDT = sdt;
+                ThanhVien.Email = email;
+                ThanhVien.DiaChi = diaChi;
+                db.SaveChanges();
+                ND.TenND = tenTV;
             }
-            return null;
+            return View("CapNhatThanhCong");
         }
 
     }

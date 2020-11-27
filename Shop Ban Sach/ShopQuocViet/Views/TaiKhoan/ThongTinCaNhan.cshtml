@@ -1,6 +1,4 @@
-﻿@using ShopQuocViet.Models
-@model List<NguoiDung>
-@{
+﻿@{
     ViewBag.Title = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -14,50 +12,47 @@
                 <h2 class="text-center">Thông tin tài khoản</h2>
                 <br />
             </div>
-            
-            @foreach (var item in Model)
-            {             
-                <form method="post">
+            <form method="post" action="/TaiKhoan/CapNhat">
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="nameAcc"><b>Tên đăng nhập:</b></label><br />
-                            <input id="nameAcc" disabled ="" class="form-control" value="@item.TenDN">
+                            <input id="nameAcc" disabled="" class="form-control" value="@ViewBag.TenDN">
                         </div>
                         <div class="form-group">
                             <label for="pass"><b>Mật khẩu:</b></label><br />
-                            <input id="pass" name="pass"  class="form-control" type="password" value="@ViewBag.MK" required>
+                            <input id="pass" name="pass" class="form-control" type="password" value="@ViewBag.MK" required>
                         </div>
 
                         <div class="form-group">
                             <label for="usr"><b>Họ và tên:</b></label><br />
-                            <input id="usr" name="usr"  class="form-control" value="@item.TenND" required>
+                            <input id="usr" name="usr" class="form-control" value="@ViewBag.TenND" >
                         </div>
                         <div class="form-group">
                             <label for="birthday"><b>Ngày sinh:</b></label><br />
-                            <input type="date" id="birthday" name="birth" value="@item.NgaySinh"  min="1918-01-01" max="2020-01-01" class="form-control"  required>
+                            <input type="date" id="birthday" name="birth" value="@ViewBag.NgaySinh" min="1918-01-01" max="2020-01-01" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="tel"><b>Số điện thoại:</b></label><br />
-                            <input id="tel" name="tel"  class="form-control" value="@item.SDT" required>
+                            <input id="tel" name="tel" class="form-control" value="@ViewBag.SDT" required>
                         </div>
                         <div class="form-group">
                             <label for="email"><b>Email:</b></label><br />
-                            <input id="email" name="email"  class="form-control"  value="@item.Email" required>
+                            <input id="email" name="email" class="form-control" value="@ViewBag.Email" required>
                         </div>
                         <div class="form-group">
                             <label for="address"><b>Địa chỉ:</b></label><br />
-                            <input id="address" name="addr" class="form-control" value="@item.DiaChi" required>
+                            <input id="address" name="addr" class="form-control" value="@ViewBag.DC" required>
                         </div>
                         <br />
-                        <div  style="text-align:center">
-                         
+                        <div style="text-align:center">
+                            <input type="submit" value="Lưu" class="btn btn-orange" />
                         </div>
-                      
+
                         <br />
                         <br />
                     </div>
-                </form>
-            }
+            </form>
+
         </div>
         <div class="col-sm-3">
 

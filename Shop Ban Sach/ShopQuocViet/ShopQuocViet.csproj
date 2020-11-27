@@ -393,6 +393,11 @@
     <Content Include="Areas\Admin\Views\AdminHome\XemSP.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHome\ThanhVien.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\XemDM.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\XemChuDe.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\Admin.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\XemDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\ChiTietHD.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -461,6 +466,7 @@
     <Content Include="Views\GioHang\TimKiemDonHang.cshtml" />
     <Content Include="Views\GioHang\DonHangTrong.cshtml" />
     <Content Include="Views\ThanhToan\Tinh.cshtml" />
+    <Content Include="Views\TaiKhoan\CapNhatThanhCong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

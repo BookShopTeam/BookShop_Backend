@@ -26,9 +26,40 @@ namespace ShopQuocViet.Areas.Admin.Controllers
             var ListSach = db.TTSach.ToList();
             return View(ListSach);
         }
+        public ActionResult XemDM()
+        {
+            var ListDM = db.DanhMuc.ToList();
+            return View(ListDM);
+        }
+        public ActionResult XemChuDe()
+        {
+            var ListCD = db.ChuDe.OrderBy(m=>m.MaDM).ToList();
+            return View(ListCD);
+        }
+        public ActionResult XemDonHang()
+        {
+            var ListHD = db.HoaDon.OrderBy(m => m.MaHD).ToList();
+            return View(ListHD);
+        }
+        public ActionResult ChiTietHD(string MaHD)
+        {
+            ViewBag.MaHD = MaHD;
+            var ListCTDH = db.CTHoaDon.SqlQuery("Select *from CTHoaDon where MaHD = '"+MaHD+"'").ToList();
+            if (ListCTDH != null)
+            {
+                return View(ListCTDH);
+            }
+            else
+                return null;
+        }
         public ActionResult ThanhVien()
         {
             var ListTV = db.NguoiDung.Where(m=>m.MaLoaiTK == "client").ToList();
+            return View(ListTV);
+        }
+        public ActionResult Admin()
+        {
+            var ListTV = db.NguoiDung.Where(m => m.MaLoaiTK == "admin").ToList();
             return View(ListTV);
         }
         public ActionResult DangXuat()

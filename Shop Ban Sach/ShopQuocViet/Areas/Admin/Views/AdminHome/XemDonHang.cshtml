@@ -1,0 +1,50 @@
+﻿@using ShopQuocViet.Models
+@model List<HoaDon>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<div class="right__content">
+    <div class="right__title">Bảng điều khiển</div>
+    <p class="right__desc">Xem đơn hàng</p>
+    <div class="right__table">
+        <div class="right__tableWrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã hoá đơn</th>
+                        <th>Tên khách hàng</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái v/c</th>
+                        <th>Thanh toán</th>
+                        <th>Địa chỉ </th>
+                        <th>Sđt</th>
+                        <th>Ngày</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><a href="@Url.Action("ChiTietHD", "AdminHome", new { MaHD = @item.MaHD })"> @item.MaHD</a></td>
+                            <td>@item.TenKH</td>
+                            <td>@Convert.ToInt32(@item.TongTien).ToString("N0")</td>
+                            <td>@item.TrangThaiVC</td>
+                            <td>@item.ThanhToan</td>
+                            <td>@item.DiaChi</td>
+                            <td>@item.SDT</td>
+                            <td>@item.Ngay.ToString().Substring(0, 10)</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>
+    <style>
+        .right__tableWrapper a {
+            color: orange;
+        }
+    </style>
